@@ -60,10 +60,7 @@ module.exports = {
     'Date of rescue/displacement': {
         linkedField: "dateOfRescue",
         method: (value) => {
-            if(!value) {
-                return {dateOfRescue: ""};
-            }
-            return {dateOfRescue: new Date(value)};
+            return {dateOfRescue: parseDate(value)};
         },
         skip: false
     },
