@@ -1,0 +1,43 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}Administration{% endblock %}
+
+{% block content %}
+{% set cardHeading = 'Administartion' %}
+
+    <div class="wti-main-content-wrapper">
+
+        <div class="wti-card wti-card-full">
+            <div class="wti-card-header">
+                {{ icons.user('user-icon') }}
+                {{ cardHeading }}
+            </div>
+            <div class="wti-card-content">
+                <div class="flex-wrapper">
+                    <div class=administration-link-wrapper>
+                        <a class="link administration-link" href="/admin/create-user">Create user</a>
+                    </div>
+                    <div class=administration-link-wrapper>
+                        <a class="link administration-link" href="/admin/existing-users">Existing users</a>
+                    </div>
+                    <div class=administration-link-wrapper>
+                        <a class="link administration-link" href="/admin/bulk-upload">Bulk upload</a>
+                    </div>
+                </div>
+            </div>
+            <div class="wti-card-footer">
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+{% endblock %}

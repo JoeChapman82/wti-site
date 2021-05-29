@@ -1,0 +1,41 @@
+<div class="wti-card wti-card-full">
+    <div class="wti-card-header">
+        {{ icons.vet('vet-icon') }}
+        {{ cardHeading }}
+    </div>
+    <div class="wti-card-content">
+        <table id="wtiTable" class="wti-table">
+            <thead>
+                <tr>
+                    <th><div class="wti-table-th-text">Species</div></th>
+                    <th><div class="wti-table-th-text">Total handled</div></th>
+                    <th><div class="wti-table-th-text">Total releases</div></th>
+                    <th><div class="wti-table-th-text">Total under care</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr class="">
+                        <td class="">{{ result.identityName }}</td>
+                        <td class="">{{ result.total }}</td>
+                        <td>{{ result.released }}</td>
+                        <td class="">{{ result.pending }}</td>
+            
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Species</th>
+                    <th>Total handled</th>
+                    <th>Total releases</th>
+                    <th>Total under care</th>
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="wti-card-footer">
+        Last update: {{ lastupdated | asDayMonthYearTime }}
+    </div>
+</div>

@@ -1,0 +1,116 @@
+{% macro textInput(id, label, value, errors, size, placeholder, blocked) %}
+    <div class="form-element form-element-{{ size }}">
+        <label class="block base-label" for="{{ id }}">{{ label }}</label>
+        {% if errors %}
+            <div class="form-error-messages-wrapper">
+                {% for error in errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <input class="block base-input{% if errors %} errored-input{% endif %}{% if blocked %} blocked-input{% endif %}" id="{{ id }}" type="text" name="{{ id }}" value="{{ value }}" {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}{% if blocked %}readonly{% endif %}>
+    </div>
+{% endmacro %}
+
+{% macro dateInput(id, label, value, errors, size, placeholder, blocked) %}
+    <div class="form-element form-element-{{ size }}">
+        <label class="block base-label" for="{{ id }}">{{ label }}</label>
+        {% if errors %}
+            <div class="form-error-messages-wrapper">
+                {% for error in errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <input class="block base-input{% if errors %} errored-input{% endif %}{% if blocked %} blocked-input{% endif %}" id="{{ id }}" type="date" name="{{ id }}" value="{{ value }}" {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}{% if blocked %}readonly{% endif %}>
+    </div>
+{% endmacro %}
+
+{% macro textAreaInput(id, label, value, errors, size, placeholder, blocked) %}
+    <div class="form-element form-element-{{ size }}">
+        <label class="block base-label" for="{{ id }}">{{ label }}</label>
+        {% if errors %}
+            <div class="form-error-messages-wrapper">
+                {% for error in errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <textarea class="block base-input base-textarea-input{% if errors %} errored-input{% endif %}{% if blocked %} blocked-input{% endif %}" id="{{ id }}" type="text" name="{{ id }}" {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}{% if blocked %}readonly{% endif %} rows="12">{{ value }}</textarea>
+    </div>
+{% endmacro %}
+
+{% macro fileInput(id, label, value, errors, size, placeholder, blocked) %}
+    <div class="form-element form-element-{{ size }}">
+        <label class="block base-label" for="{{ id }}">{{ label }}</label>
+        {% if errors %}
+            <div class="form-error-messages-wrapper">
+                {% for error in errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <input class="wti-file-input block base-input{% if errors %} errored-input{% endif %}{% if blocked %} blocked-input{% endif %}" id="{{ id }}" type="file" name="{{ id }}" value="{{ value }}" {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}{% if blocked %}readonly{% endif %}>
+    </div>
+{% endmacro %}
+
+{% macro textArea(id, label, value, errors, size, placeholder, blocked) %}
+    <div class="form-element form-element-{{ size }}">
+        <label class="block base-label" for="{{ id }}">{{ label }}</label>
+        {% if errors %}
+            <div class="form-error-messages-wrapper">
+                {% for error in errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <textarea class="block base-input{% if errors %} errored-input{% endif %}{% if blocked %} blocked-input{% endif %}" id="{{ id }}" type="text" name="{{ id }}" {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}{% if blocked %}readonly{% endif %} rows="8" cols="80">{{ value }}</textarea>
+    </div>
+{% endmacro %}
+
+{% macro selectInput(id, label, options, value, errors, size, placeholder, blocked) %}
+    <div class="form-element form-element-{{ size }}">
+        <label class="block base-label" for="{{ id }}">{{ label }}</label>
+        {% if errors %}
+            <div class="form-error-messages-wrapper">
+                {% for error in errors %}
+                    <span class="form-error-message">{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <select class="block base-select-input{% if errors %} errored-input{% endif %}{% if blocked %} blocked-input{% endif %}" id="{{ id }}" type="text" name="{{ id }}" value="{{ value }}" {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}{% if blocked %}readonly{% endif %}>
+            <option value="" selected disabled>Please select</option>
+            {% for option in options %}
+                <option value="{{ option.value}}" {% if value === option.value %}selected{% endif %} {% if option.target %}data-target="{{ option.target }}"{% endif %}>{{ option.text }}</option>
+            {% endfor %}
+        </select>
+    </div>
+{% endmacro %}
+
+{% macro passwordInput(id, label, value, errors, size, placeholder) %}
+<div class="form-element form-element-{{ size }}">
+    <label class="block base-label" for="{{ id }}">{{ label }}</label>
+    {% if errors %}
+        <div class="form-error-messages-wrapper">
+            {% for error in errors %}
+                <span class="form-error-message">{{ error }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <input class="block base-input{% if errors %} errored-input{% endif %}" id="{{ id }}" type="password" name="{{ id }}" value="" {% if placeholder %}placeholder="{{ placeholder }}"{% endif %}>
+</div>
+{% endmacro %}
+
+{% macro submitInput(id, style, value) %}
+    <div class="form-element form-element-{{ size }}">
+        <input class="button button-{{ style }}" id="{{ id }}" type="submit" name="{{ id }}" value="{{ value | default('Submit') }}">
+    </div>
+{% endmacro %}
+
+{% macro submitButton(id, style, value) %}
+    <button id="{{ id }}" class="wti-button wti-{{ style }}-button" type="submit" name="button">{{ value | default('Submit')}}</button>
+{% endmacro %}
+
+{% macro hiddenInput(id, value) %}
+    <input id="{{ id }}" type="hidden" name="{{ id }}" value="{{ value }}">
+{% endmacro %}

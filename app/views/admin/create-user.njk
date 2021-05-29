@@ -1,0 +1,37 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}Create user{% endblock %}
+
+{% block content %}
+    <div class="wti-main-content-wrapper">
+        <form class="" action="/admin/create-user" method="post">
+            {% if success %}
+            <div class="wti-successful-action">
+                <h2 class="wti-success-message">User Created!</h2>
+                <p class="wti-success-details">Email address: <span class="strong">{{ createdUser.email }}</span></p>
+                <p class="wti-success-details">Name: <span class="strong">{{ createdUser.username }}</span></p>
+                <p class="wti-success-details">Password: <span class="strong">{{ defaultPassword }}</span></p>
+            </div>
+            {% endif %}
+            <div class="wti-new-case-wrapper">
+                <h2 class="wti-case-tab-heading">Create a new user</h2>
+                <div class="spaced-text">
+                    <p class="lede">A default password will be set to '{{ defaultPassword }}' (without quotes). This must be changed on initial login.</p>
+                </div>
+                {{ forms.textInput('email', 'Email address', '', errors.email) }}
+                {{ forms.textInput('username', 'Name', '', errors.username) }}
+                {{ forms.hiddenInput('_csrf', _csrf )}}
+                {{ forms.hiddenInput('password', defaultPassword )}}
+                {{ forms.submitButton('submit', 'primary', 'Create user') }}
+            </div>
+
+        </form>
+
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}New case{% endblock %}
+
+{% block content %}
+    <div class="wti-main-content-wrapper">
+        <form id="uploadForm" enctype="multipart/form-data" class="form" action="/admin/bulk-upload?_csrf={{ _csrf }}" method="post">
+            <div class="wti-new-case-wrapper">
+                {% if fileReceived %}
+                    <div class="wti-case-flex-item wti-case-tab-success-message-wrapper">
+                        <p class="wti-case-tab-success-message">File uploaded successfully</p>
+                    </div>
+                {% endif %}
+                <h2 class="wti-case-tab-heading">Upload multiple records</h2>
+                <div class="spaced-text">
+                    <p class="lede">Select a csv file to upload</p>
+                </div>
+                {{ forms.fileInput('uploadFile', 'Choose your file here', '', errors.uploadFile) }}
+                {{ forms.hiddenInput('_csrf', _csrf)}}
+                {{ forms.submitButton('submit', 'primary', 'Upload file') }}
+
+
+            </div>
+        </form>
+
+
+    </div>
+
+
+{% endblock %}

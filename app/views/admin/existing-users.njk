@@ -1,0 +1,50 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}Existing users{% endblock %}
+
+{% block content %}
+    <div class="wti-main-content-wrapper">
+        <div class="wti-card wti-card-full">
+            <div class="wti-card-header">
+                {{ icons.user('existing-cases-icon') }}
+                Existing Users
+            </div>
+            <div class="wti-card-content">
+                <table id="wtiTable" class="wti-table">
+                    <thead>
+                        <tr class="wti-sortable-header">
+                            <th class="wti-sortable-table" data-column="0"><div class="wti-table-th-text">Name</div><div class="wti-table-icons"><div id="wtiTableSortUp0" class="wti-table-icon wti-table-icon-left">{{ icons.upArrowTable('wti-table-svg') }}</div><div id="wtiTableSortDown0" class="wti-table-icon">{{ icons.downArrowTable('wti-table-svg') }}</div></div></th>
+                            <th class="wti-sortable-table" data-column="1"><div class="wti-table-th-text">Email</div><div class="wti-table-icons"><div id="wtiTableSortUp1" class="wti-table-icon wti-table-icon-left">{{ icons.upArrowTable('wti-table-svg') }}</div><div id="wtiTableSortDown1" class="wti-table-icon">{{ icons.downArrowTable('wti-table-svg') }}</div></div></th>
+                            <th class="wti-sortable-table" data-column="2"><div class="wti-table-th-text">Role</div><div class="wti-table-icons"><div id="wtiTableSortUp2" class="wti-table-icon wti-table-icon-left">{{ icons.upArrowTable('wti-table-svg') }}</div><div id="wtiTableSortDown2" class="wti-table-icon">{{ icons.downArrowTable('wti-table-svg') }}</div></div></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr class="wti-clickable-row" data-link="wtiLink{{ loop.index }}">
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.role }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="wti-card-footer">
+                Last update: {{ lastupdated | asDayMonthYearTime }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

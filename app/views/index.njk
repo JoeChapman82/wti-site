@@ -1,0 +1,28 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+
+{% block pageTitle %}Login{% endblock %}
+
+{% block loggedOutContent %}
+
+<main class="login-wrapper-main">
+    <div class="login-form-wrapper">
+        <div class="login-form-header">
+            <h1 class="login-heading">Login</h1>
+        </div>
+        <div class="login-form-body">
+            <form class="" action="/" method="post">
+                {{ forms.textInput('email', 'Email address', '', errors.email, 'full') }}
+                {{ forms.passwordInput('password', 'Password', '', errors.password, 'full') }}
+                {{ forms.hiddenInput('_csrf', _csrf) }}
+                {{ forms.submitInput('submit', 'primary', 'Login') }}
+            </form>
+            <br/>
+            {{ typography.link('forgottenLink', 'Forgotten Password?', '/reset-password', true) }}
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}

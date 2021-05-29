@@ -1,0 +1,41 @@
+<header class="header">
+    <div class="header-left">
+        <!-- <a class="header-home-link" href="/admin/dashboard">{{ serviceName }}</a> -->
+        <a class="header-home-link" href="/admin/dashboard"><div class="header-logo">&nbsp;</div>&nbsp;<div class="header-logo-2"></div><p class="inline">&nbsp;{{ serviceName }}</p></a>
+    </div>
+    <div class="header-right">
+        <div id="currentUserOptions" class="current-user">
+            <div class="current-user-option-select">
+                <button class="wti-invisibutton user-options" type="button" name="button">
+                    <span>{{ icons.user('icon-user') }}</span>
+                    <span class="current-user-option-text">&nbsp;{{ userToken.username }}</span>
+                </button>
+                <div class="user-options-list">
+                    <div class="secondary-user-details">
+                        <span>{{ icons.user('icon-user') }}</span>
+                        <span class="current-user-option-text">&nbsp;{{ userToken.username }}</span>
+                    </div>
+                    <ul class="user-options-list-main">
+                        <li class="user-options-list-item">
+                            <a class="user-options-list-link" href="/admin/existing-cases/{{ userToken.sub }}">My cases</a>
+                        </li>
+                        <li class="user-options-list-item">
+                            <a class="user-options-list-link" href="/admin/update-my-details">Update details</a>
+                        </li>
+                        <li class="user-options-list-item user-options-list-item-zero-pad">
+                            <form class="" action="/logout" method="post">
+                                <a class="user-options-list-link user-options-list-item-zero-pad" href="#">
+                                    <button class="wti-invisibutton logout-button" type="submit" name="button">Logout</button>
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="inline">
+
+        </div>
+    </div>
+</header>

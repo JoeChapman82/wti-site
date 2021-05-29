@@ -1,0 +1,23 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 2017,
+        "sourceType": "module"
+    },
+    "root": true,
+    "extends": [ "eslint:recommended"],
+    "env": {
+        "es6": true
+    },
+    "rules": {
+        "array-bracket-spacing": [ "error", "never" ],
+        "comma-dangle": [ "error", "never" ],
+        "indent": [ "error", 4 ],
+        "semi": [ "error", "always" ],
+        "no-inline-comments": "error",
+        "no-undef": 0,
+        "no-unused-vars": 0,
+        "no-console": 0,
+        "require-jsdoc": 0,
+        "valid-jsdoc": "error"
+    }
+}

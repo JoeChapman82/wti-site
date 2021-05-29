@@ -1,0 +1,61 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}New case{% endblock %}
+
+{% block content %}
+{% set cardHeading = 'Create new case' %}
+    <div class="wti-main-content-wrapper">
+        <div class="wti-card wti-card-full">
+            <div class="wti-card-header">
+                {{ icons.dashboard('dashboard-icon') }}
+                {{ cardHeading }}
+            </div>
+            <div class="wti-card-content">
+                <form class="" action="/admin/new-case" method="post">
+                    <div class="wti-new-case-wrapper">
+        
+                        <div class="spaced-text">
+                            <p class="lede">Enter the initial details for the record. You will be redirected to the new case record.</p>
+                        </div>
+        
+                        <div class="wti-new-case-row">
+                            <div class="wti-new-case-section">
+                                <h3 class="wti-case-section-heading">Case Identitiy</h3>
+                                {{ forms.textInput('caseNumber', 'Case number', record.caseNumber, errors.caseNumber) }}
+                                
+                                {{ forms.selectInput('class', 'Class', [
+                                    {text: 'Mammals', value: 'mammals'},
+                                    {text: 'Aves', value: 'aves'},
+                                    {text: 'Reptiles', value: 'reptiles'}
+                                ], record.class, errors.class)}}
+        
+                                {{ forms.selectInput('groupName', 'Group name', [], record.groupName, errors.groupName) }}
+                                {{ forms.selectInput('identityName', 'Identity', [], record.identityName, errors.identityName)}}
+                                {{ forms.textInput('scientificName', 'Scientific name', record.scientificName, errors.scientificName, false, false, true) }}
+                                {{ forms.textInput('iucnCategory', 'IUCN Category', record.iucnCategory, errors.iucnCategory, false, false, true) }}
+        
+                                {{ forms.textInput('placeOfRescue', 'Place of rescue', record.placeOfRescue, errors.placeOfRescue) }}
+                                {{ forms.textInput('zoneName', 'Zone name', record.zoneName, errors.zoneName) }}
+                                {{ forms.hiddenInput('_csrf', _csrf )}}
+                                {{ forms.submitButton('submit', 'primary', 'Create record') }}
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="wti-card-footer">
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="/scripts/gatherData.js"></script>
+{% endblock %}

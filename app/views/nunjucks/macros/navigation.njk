@@ -1,0 +1,10 @@
+{% macro sidebarNav(activeView, items) %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+    <ul class="sidebar-nav">
+        {% for item in items %}
+            <li class="sidebar-nav-list-item">
+                <a class="sidebar-nav-link{% if item.active === activeView %} active-nav-link{% endif %}" href="{{ item.href }}">{{ icons[item.icon]('icon-sidebar ' + item.extraIconClass) }}&nbsp;<span class="wti-sidebar-label">{{ item.label }}</span></a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}

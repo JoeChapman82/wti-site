@@ -1,0 +1,85 @@
+.button {
+    border-radius: 5px;
+    text-align: center;
+    padding: .75rem;
+    width: 100%;
+    font-size: 100%;
+    transition: background-color .3s ease;
+}
+
+.button-primary {
+    background-color: $button-colour-primary;
+    color: $white;
+}
+
+.button-primary:hover {
+    background-color: $button-colour-primary-hover;
+}
+
+.wti-button {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out,border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.wti-primary-button {
+    color: #fff;
+    background-color: $button-colour-primary;
+    border-color: $button-colour-primary;
+}
+
+.wti-primary-button:hover {
+    color: #fff;
+    background-color: darken($button-colour-primary, 10%);
+    border-color: darken($button-colour-primary, 10%);
+    cursor: pointer;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.wti-invisibutton {
+    background: none;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    border: 0;
+    padding: 0;
+    color: inherit;
+    cursor: default;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    padding: .5rem;
+    outline: 0;
+}
+
+.wti-invisibutton:hover {
+    cursor: pointer;
+}
+
+.wti-invisibutton:active {
+    outline: 0;
+    border-top: 3px solid $inactive-text-colour;
+}

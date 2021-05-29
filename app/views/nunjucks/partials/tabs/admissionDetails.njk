@@ -1,0 +1,161 @@
+<div id="admissionDetails" class="wti-case-tab {% if not activeTab or activeTab !== 'admissionDetails' %}js-hidden{% endif %}">
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item">
+            <h2 class="wti-case-tab-heading">Rescue and admission details</h2>
+        </div>
+        {% if success %}
+        <div class="wti-case-flex-item wti-case-tab-success-message-wrapper">
+            <p class="wti-case-tab-success-message">Record updated</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('caseNumber', 'Case number', record.caseNumber, errors.caseNumber, false, false, true) }}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.dateInput('dateAdded', 'Date added', record.dateAdded | asDateInputString, errors.dateAdded, false, false, true) }}
+        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.selectInput('rescueType', 'Rescue type', [
+                {text: 'Field', value: 'Field'},
+                {text: 'Confiscated', value: 'Confiscated'},
+                {text: 'Surrendered', value: 'Surrendered'}
+                ], record.rescueType, errors.rescueType)}}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.dateInput('dateOfRescue', 'Date of rescue', record.dateOfRescue | asDateInputString, errors.dateOfRescue) }}
+        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item">
+            {{ forms.textInput('placeOfRescue', 'Place of rescue', record.placeOfRescue, errors.placeOfRescue) }}
+        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('gpsLatitudeRescue', 'GPS Latitude, (eg 28.666567 N)', record.gpsLatitudeRescue, errors.gpsLatitudeRescue) }}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.textInput('gpsLongditudeRescue', 'GPS Longditude, (eg 90.544328 E)', record.gpsLongditudeRescue, errors.gpsLongditudeRescue) }}
+        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.selectInput('displacement', 'Cause of displacement', [
+                {text: 'Caught (poach/hunt/trade)', value: 'Caught (poach/hunt/trade)'},
+                {text: 'Caught/picked up by people', value: 'Caught/picked up by people'},
+                {text: 'Caught/trapped (conflict)', value: 'Caught/trapped (conflict)'},
+                {text: 'Disease/Debility', value: 'Disease/Debility'},
+                {text: 'Fallen into pit/trench/well', value: 'Fallen into pit/trench/well'},
+                {text: 'Flood/river induced', value: 'Flood/river induced'},
+                {text: 'Impact (glass,wire,vehicle)', value: 'Impact (glass,wire,vehicle)'},
+                {text: 'Injury (electrocution)', value: 'Injury (electrocution)'},
+                {text: 'Injury (people/dog/cat)', value: 'Injury (people/dog/cat)'},
+                {text: 'Injury (predation)', value: 'Injury (predation)'},
+                {text: 'Injury (road/train hit)', value: 'Injury (road/train hit)'},
+                {text: 'Injury (unknown)', value: 'Injury (unknown)'},
+                {text: 'Left behind (conflict)', value: 'Left behind (conflict)'},
+                {text: 'Moved into human habitats', value: 'Moved into human habitats'},
+                {text: 'Nest/Tree/Chick fall', value: 'Nest/Tree/Chick fall'},
+                {text: 'Orphan (parent killed)', value: 'Orphan (parent killed)'},
+                {text: 'Poisoning', value: 'Poisoning'},
+                {text: 'Stranded population', value: 'Stranded population'},
+                {text: 'Unknown', value: 'Unknown'},
+                {text: 'Unknown (confiscated)', value: 'Unknown (confiscated)'},
+                {text: 'Unknown (found alone)', value: 'Unknown (found alone)'},
+                {text: 'Others', value: 'Others'}
+            ], record.displacement, errors.displacement)}}
+        </div>
+        <!-- <div class="wti-case-flex-item">
+            {{ forms.textInput('unknown', 'Unknown Field', record.test, errors.nones) }}
+        </div> -->
+    </div>
+
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('zoneName', 'Zone of origin', record.zoneName, errors.zoneName) }}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.dateInput('dateOfAdmission', 'Date of admission', record.dateOfAdmission | asDateInputString, errors.dateOfAdmission) }}
+        </div>
+    </div>
+
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.selectInput('rescueMode', 'Rescue mode', [
+                {text: 'In situ', value: 'In situ', target: 'facilityInSituWrapper'},
+                {text: 'Ex situ', value: 'Ex Situ', target: 'facilityExSituWrapper'}
+            ], record.rescueMode, errors.rescueMode)}}
+        </div>
+
+        <div id="facilityInSituWrapper" class="wti-case-flex-item js-hidden">
+            {{ forms.selectInput('facilityInSitu', 'Facility', [
+                {text: 'MVS-CA', value: 'MVS-CA'},
+                {text: 'MVS-WA', value: 'MVS-WA'},
+                {text: 'MVS-EA', value: 'MVS-EA'},
+                {text: 'MVS-Arun', value: 'MVS-Arun'},
+                {text: 'MVS-NB', value: 'MVS-NB'},
+                {text: 'MVS-UP', value: 'MVS-UP'},
+                {text: 'MVS-SBR', value: 'MVS-SBR'},
+                {text: 'MVS-KJ', value: 'MVS-KJ'},
+                {text: 'MVS-UK', value: 'MVS-UK'},
+                {text: 'MVS-BRM', value: 'MVS-BRM'},
+                {text: 'MVS-Gondia', value: 'MVS-Gondia'},
+                {text: 'HQ', value: 'HQ'},
+                {text: 'MVS-Bandipur', value: 'MVS-Bandipur'},
+                {text: 'MVS-KA', value: 'MVS-KA'},
+                {text: 'Other', value: 'Other'}
+            ], record.facility, errors.facility)}}
+        </div>
+
+        <div id="facilityExSituWrapper" class="wti-case-flex-item js-hidden">
+            {{ forms.selectInput('facilityExSitu', 'Facility', [
+                {text: 'CWRC', value: 'CWRC'},
+                {text: 'CBRC', value: 'CBRC'},
+                {text: 'WTH-Kokrajhar', value: 'WTH-Kokrajhar'},
+                {text: 'EA-Station', value: 'EA-Station'},
+                {text: 'NB-Station', value: 'NB-Station'},
+                {text: 'SBR-Station', value: 'SBR-Station'},
+                {text: 'KJ-Station', value: 'KJ-Station'},
+                {text: 'Bandipur-Station', value: 'Bandipur-Station'},
+                {text: 'BRM-Station', value: 'BRM-Station'},
+                {text: 'Gond-Station', value: 'Gond-Station'},
+                {text: 'UK-Station', value: 'UK-Station'},
+                {text: 'HQ-Station', value: 'HQ-Station'},
+                {text: 'KA-Station', value: 'KA-Station'},
+                {text: 'Manas-Boma', value: 'Manas-Boma'},
+                {text: 'Other', value: 'Other'}
+            ], record.facility, errors.facility)}}
+        </div> 
+
+    </div>
+
+    <!-- <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.selectInput('proposedResolution', 'Propsed resolution', [
+                {text: 'Release', value: 'release'},
+                {text: 'Admit', value: 'admit'},
+                {text: 'Transfer', value: 'transer'},
+                {text: 'Euthanize', value: 'euthenize'},
+                {text: 'Other', value: 'other'}
+            ], record.proposedResolution, errors.proposedResolution)}}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.textInput('otherResolution', 'If other, please specify', record.otherResolution, errors.otherResolution) }}
+        </div>
+    </div> -->
+
+    <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+</div>
+
+
+
+
+
+
+
+
+

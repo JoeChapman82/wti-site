@@ -1,0 +1,107 @@
+.icon-user {
+    fill: $inactive-text-colour;
+    width: 20px;
+    vertical-align: bottom;
+
+}
+
+.icon-user:hover {
+    fill: $inactive-text-hover-colour;
+}
+
+.icon-sidebar {
+    fill: $inactive-text-colour;
+    width: 19px;
+    height: 19px;
+    vertical-align: bottom;
+}
+
+.existing-cases-icon {
+    fill: $black;
+    stroke: $black;
+    width: 1.5rem;
+    margin-right: .5rem;
+    margin-top: -.25rem;
+}
+
+.vet-icon {
+    fill: $black;
+    stroke: $black;
+    width: 1.5rem;
+    margin-right: .5rem;
+    margin-top: -.25rem;
+}
+
+.dashboard-icon {
+    fill: $black;
+    stroke: $black;
+    width: 1.5rem;
+    margin-right: .5rem;
+    margin-top: -.25rem;
+}
+
+.user-icon {
+    fill: $primary-colour;
+    stroke: $black;
+    width: 1.5rem;
+    margin-right: .5rem;
+    margin-top: -.25rem;
+}
+
+.husband-icon {
+    fill: $tertiary-colour;
+    stroke: $black;
+    width: 1.5rem;
+    margin-right: .5rem;
+    margin-top: -.25rem;
+}
+
+.left-chevron-icon {
+    stroke: $black;
+    width: 2rem;
+    height: 2rem;
+}
+
+.right-chevron-icon {
+    stroke: $black;
+    width: 2rem;
+    height: 2rem;
+}
+
+.left-chevron-icon:hover,
+.right-chevron-icon:hover {
+    stroke: $link-colour-primary;
+}
+
+.left-chevron-icon-disabled {
+    stroke: rgba(188, 188, 188, 1);
+    width: 2rem;
+    height: 2rem;
+}
+
+.right-chevron-icon-disabled {
+    stroke: rgba(188, 188, 188, 1);
+    width: 2rem;
+    height: 2rem;
+}
+
+.left-chevron-icon-disabled:hover,
+.right-chevron-icon-disabled:hover {
+    cursor: not-allowed;
+}
+
+.trans-fill-icon {
+    fill: $secondary-colour;
+}
+
+.wti-table-svg {
+    width: 1rem;
+}
+
+.wti-table-icon > svg {
+    stroke-width: 3;
+}
+
+.wti-table-icon-selected > svg {
+    stroke: black;
+}

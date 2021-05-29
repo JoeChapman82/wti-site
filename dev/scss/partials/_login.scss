@@ -1,0 +1,35 @@
+.login-wrapper-main {
+    background-color: $primary-colour;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 3rem;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.login-form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-form-header {
+    padding: 1rem 1.25rem;
+    background-color: $transparant-white-1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid $form-border-colour;
+}
+
+.login-form-body {
+    padding: 1.25rem;
+    background-color: $white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+@media screen and(max-width: 600px) {
+    .login-wrapper-main {
+        padding: 2rem 1rem;
+    }
+}

@@ -1,0 +1,76 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}Search{% endblock %}
+
+{% block content %}
+{% set cardHeading = 'Search records' %}
+
+    <div class="wti-main-content-wrapper">
+
+        {% if records %}
+        <form action="/admin/search" method="post">
+            <input type="hidden" name="_csrf" value="{{ _csrf }}">
+            {% for key, value in queryParams %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}">
+            {% endfor %}
+            <p class="wti-cases-details">
+                {% if showBack %}
+                    <input class="wti-left-chevron-input" name="start" type="submit" value="{{ startPoint - recordRetrievalLimit }}">
+                {% else %}
+                     <span class="wti-chevron-left">{{ icons.leftChevron('left-chevron-icon-disabled') }}</span>
+                     {% endif %}
+            Showing {{ startPoint }} to {{ endPoint }} of {{ recordCount }} records
+                {% if showForward %}
+                    <!-- <span class="wti-chevron-right"><a class="link" href="/admin/search?start={{ endPoint + 1 }}">{{ icons.rightChevron('right-chevron-icon') }}</a></span> -->
+                    <input class="wti-right-chevron-input" name="start" type="submit" value="{{ endPoint + 1 }}">
+                    {% else %}
+                    <span class="wti-chevron-right">{{ icons.rightChevron('right-chevron-icon-disabled') }}</span>
+                    {% endif %}
+            </p>
+        </form>
+            {% set cardHeading = ' Search results' %}
+            {% include "nunjucks/partials/recordsResults.njk" %}
+            <br>
+        {% endif %}
+
+        <div class="wti-card wti-card-full">
+            <div class="wti-card-header">
+                {{ icons.search('search-icon') }}
+                {{ cardHeading }}
+            </div>
+            <div class="wti-card-content">
+                <form class="" action="/admin/search" method="post">
+                    <div class="wti-new-case-wrapper">
+                        <h2 class="wti-case-tab-heading">Search for records</h2>
+                        {% if noRecordsFound %}
+                            <h2 class="wti-warning-message">No results found</h2>
+                        {% endif %}
+                        <div class="spaced-text">
+                            <p class="lede">Enter the search criteria</p>
+                        </div>
+                        {{ forms.textInput('caseNumber', 'Case number', '', errors.caseNumber) }}
+                        {{ forms.textInput('placeOfRescue', 'Place of rescue', '', errors.placeOfRescue) }}
+                        {{ forms.textInput('groupName', 'Group name', '', errors.groupName) }}
+                        {{ forms.textInput('identityName', 'Identity name', '', errors.identityName) }}
+                        {{ forms.textInput('class', 'Class', '', errors.class) }}
+                        {{ forms.textInput('zoneName', 'Zone name', '', errors.zoneName) }}
+                        {{ forms.hiddenInput('_csrf', _csrf )}}
+                        {{ forms.submitButton('submit', 'primary', 'Find Records') }}
+                    </div>
+        
+                </form>
+            </div>
+            <div class="wti-card-footer">
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+{% endblock %}

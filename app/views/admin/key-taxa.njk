@@ -1,0 +1,16 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}Existing cases{% endblock %}
+
+{% block content %}
+    <div class="wti-main-content-wrapper">
+            {% set cardHeading = 'Key Taxa Summary' %}
+            {% include "nunjucks/partials/keyTaxaSummary.njk" %}
+        </form>
+    </div>
+
+{% endblock %}

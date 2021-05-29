@@ -1,0 +1,118 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+
+{% block pageTitle %}Dashboard{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/chartist-min.css">
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="dashboard-cards-wrapper">
+        <div class="dashboard-card primary-card">
+            <a class="wti-card-link" href="/admin/existing-cases">
+                <div class="card-body">
+                    <p>Total cases: {{ dashboardResults.recordCount }}</p>
+                </div>
+                <div class="card-footer">
+                </div>
+            </a>
+        </div>
+        <div class="dashboard-card success-card">
+            <a class="wti-card-link" href="/admin/existing-cases-saved">
+                <div class="card-body">
+                    <p>Total animals saved: {{ dashboardResults.animalsSaved }}</p>
+                </div>
+                <div class="card-footer">
+                </div>
+            </a>
+        </div>
+        <div class="dashboard-card warning-card">
+            <a class="wti-card-link" href="/admin/existing-cases">
+                <div class="card-body">
+                    <p>Species handled: {{ dashboardResults.uniqueSpecies.length }}</p> 
+                </div>
+                <div class="card-footer">
+                </div>
+            </a>
+        </div>
+        <div class="dashboard-card error-card">
+            <a class="wti-card-link" href="/admin/existing-cases">
+            <div class="card-body">
+                <p>New cases this month: {{ dashboardResults.recordsThisMonth }}</p>
+            </div>
+            <div class="card-footer">
+            </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="dashboard-charts-section">
+        <div class="dashboard-charts-row">
+
+            <div class="wti-card wti-card-60 wti-card-margin-right">
+                <div class="wti-card-header">
+                    New cases handled (past 12 months)
+                </div>
+                <div class="wti-card-content dashboard-charts-item dashboard-line-chart" id="dashboardLineChart" data-x="" data-y=""></div>
+                <div class="wti-card-footer">
+                    Last update: {{ lastUpdated | asDayMonthYearTime }}
+                </div>
+            </div>
+
+            <div class="wti-card wti-card-50">
+                <div class="wti-card-header">
+                    Total cases (By Zone)
+                </div>
+                <div class="wti-card-content dashboard-pie-chart" id="dashboardPieChart2" data-x="" data-y=""></div>
+                <div class="wti-card-footer">
+                    Last update: {{ lastUpdated | asDayMonthYearTime }}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="dashboard-charts-row">
+
+            <div class="wti-card wti-card-50 wti-card-margin-right">
+                <div class="wti-card-header">
+                    Total Cases (By class)
+                </div>
+                <div class="wti-card-content dashboard-bar-chart" id="dashboardBarChart" data-x="" data-y=""></div>
+                <div class="wti-card-footer">
+                    Last update: {{ lastUpdated | asDayMonthYearTime }}
+                </div>
+            </div>
+
+            <div class="wti-card wti-card-50 wti-smallscreen-margin-top">
+                <div class="wti-card-header">
+                    Total cases (By group name)
+                </div>
+                <div class="wti-card-content dashboard-pie-chart" id="dashboardPieChart" data-x="" data-y=""></div>
+                <div class="wti-card-footer">
+                    Last update: {{ lastUpdated | asDayMonthYearTime }}
+                </div>
+            </div>
+
+            <div id="dashboardData" class="wti-hidden">
+                {{ dashboardResultsJSON }}
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="/scripts/chartist-min.js"></script>
+    <script src="/scripts/chartist-plugin-legend.js"></script>
+    <script src="/scripts/dashboard-charts.js"></script>
+{% endblock %}

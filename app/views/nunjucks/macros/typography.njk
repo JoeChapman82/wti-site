@@ -1,0 +1,5 @@
+{% macro link(id, label, href, centred) %}
+    <div class="form-element {% if centred %}centred-text-wrapper{% endif %}">
+        <a id="{{ id }}" class="link" href="{{ href }}">{{ label }}</a>
+    </div>
+{% endmacro %}

@@ -1,0 +1,42 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}Existing cases{% endblock %}
+
+{% block content %}
+    <div class="wti-main-content-wrapper">
+        <form action="/admin/existing-cases" method="post">
+            {{ forms.hiddenInput('_csrf', _csrf )}}
+            {% for key, value in queryParams %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}">
+            {% endfor %}
+            <p class="wti-cases-details">
+                {% if showBack %}
+                    <input class="wti-left-chevron-input" name="start" type="submit" value="{{ startPoint - recordRetrievalLimit }}">
+                {% else %}
+                     <span class="wti-chevron-left">{{ icons.leftChevron('left-chevron-icon-disabled') }}</span>
+                     {% endif %}
+            Showing {{ startPoint }} to {{ endPoint }} of {{ recordCount }} records
+                {% if showForward %}
+                    <!-- <span class="wti-chevron-right"><a class="link" href="/admin/search?start={{ endPoint + 1 }}">{{ icons.rightChevron('right-chevron-icon') }}</a></span> -->
+                    <input class="wti-right-chevron-input" name="start" type="submit" value="{{ endPoint + 1 }}">
+                    {% else %}
+                    <span class="wti-chevron-right">{{ icons.rightChevron('right-chevron-icon-disabled') }}</span>
+                    {% endif %}
+            </p>
+            </p>
+            {% set cardHeading = 'Existing records' %}
+            {% include "nunjucks/partials/recordsResults.njk" %}
+            <div class="wti-button-wrapper">
+                <input id="findRecords" type="submit" name="findRecords" class="wti-button wti-primary-button" value="Find records">
+                {% if hasAtLeastOneSubmit %} {
+                    <input type="hidden" name="hasAtLeastOneSubmit" value="hasAtLeastOneSubmit">
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

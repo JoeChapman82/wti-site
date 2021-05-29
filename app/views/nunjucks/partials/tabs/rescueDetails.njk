@@ -1,0 +1,38 @@
+<div id="rescueDetails" class="wti-case-tab {% if activeTab and activeTab !== 'rescueDetails' %}js-hidden{% endif %}">
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item">
+            <h2 class="wti-case-tab-heading">Case Identity</h2>
+        </div>
+        {% if success %}
+        <div class="wti-case-flex-item wti-case-tab-success-message-wrapper">
+            <p class="wti-case-tab-success-message">Record updated</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('caseNumber', 'Case number', record.caseNumber, errors.caseNumber, false, false, true) }}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.dateInput('dateAdded', 'Date added', record.dateAdded | asDateInputString, errors.dateAdded, false, false, true) }}
+        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.selectInput('class', 'Class', [
+                {text: 'Mammals', value: 'mammals'},
+                {text: 'Aves', value: 'aves'},
+                {text: 'Reptiles', value: 'reptiles'}
+            ], record.class, errors.class)}}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.textInput('groupName', 'Group name', record.groupName, errors.groupName) }}
+        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('identityName', 'Identity name', record.identityName, errors.identityName) }}
+        </div>
+    </div>
+    <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+</div>

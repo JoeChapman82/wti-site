@@ -1,0 +1,10 @@
+.DS_Store
+.jshintrc
+.editorconfig
+.nyc_output
+.scannerwork/*
+/Dockerfile
+/.env
+/.env.testing
+/ecosystem.config.js
+/test

@@ -1,0 +1,11 @@
+<div id="initialExamination" class="wti-case-tab {% if not activeTab or activeTab !== 'initialExamination' %}js-hidden{% endif %}">
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('caseNumber', 'Case number', record.caseNumber, errors.caseNumber, false, false, true) }}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.dateInput('dateAdded', 'Date added', record.dateAdded | asDateInputString, errors.dateAdded, false, false, true) }}
+        </div>
+    </div>
+    <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+</div>

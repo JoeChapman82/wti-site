@@ -1,0 +1,41 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}Update my details{% endblock %}
+
+{% block content %}
+    <div class="wti-main-content-wrapper">
+        <form class="" action="/admin/update-my-details" method="post">
+            {% if success %}
+            <div class="wti-successful-action">
+                <h2 class="wti-success-message">Details updated!</h2>
+                <p class="wti-success-details">Remember to use your new password the next time you login.</p>
+            </div>
+            {% endif %}
+            <div class="wti-update-details-wrapper">
+
+                <h2 class="wti-case-tab-heading">Update my details</h2>
+                <div class="spaced-text">
+                    <p class="lede">Change any required details here. Details will take effect immediately.</p>
+                </div>
+                {% if userToken.hasDefaultPassword === true %}
+                    <p class="wti-warning-message">You must change your password to continue!</p>
+                {% endif %}
+                {{ forms.textInput('email', 'Email address', userToken.email, errors.email) }}
+                {{ forms.textInput('username', 'Name', userToken.username, errors.username) }}
+                {{ forms.passwordInput('password', 'Current password', '', errors.password) }}
+                {{ forms.passwordInput('newPassword', 'New password', '', errors.newPassword) }}
+                {{ forms.passwordInput('confirmPassword', 'Confirm password', '', errors.confirmPassword) }}
+                {{ forms.hiddenInput('_csrf', _csrf) }}
+                {{ forms.submitButton('submit', 'primary', 'Update details') }}
+            </div>
+
+        </form>
+
+    </div>
+
+
+{% endblock %}

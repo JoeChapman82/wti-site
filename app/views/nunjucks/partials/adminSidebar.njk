@@ -1,0 +1,11 @@
+<nav class="sidebar">
+    {{ navigation.sidebarNav(activeView, [
+        {href: '/admin/dashboard', label: 'Dashboard', active: 'dashboard', icon: 'user'},
+        {href: '/admin/new-case', label: 'New case', active: 'new-case', icon: 'dashboard'},
+        {href: '/admin/existing-cases', label: 'Existing cases', active: 'existing-cases', icon: 'case'},
+        {href: '/admin/key-taxa', label: 'Key taxa', active: 'key-taxa', icon: 'vet'},
+        {href: '/admin/generate-reports', label: 'Generate reports', active: 'generate-reports', icon: 'husband', extraIconClass: 'trans-fill-icon'},
+        {href: '/admin/administration', label: 'Administration', active: 'administration', icon: 'user' },
+        {href: '/admin/search', label: 'Search', active: 'search', icon: 'search', extraIconClass: 'trans-fill-icon'}
+    ]) }}
+</nav>

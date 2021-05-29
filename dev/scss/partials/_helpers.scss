@@ -1,0 +1,29 @@
+.block {
+    display: block;
+}
+
+.inline {
+    display: inline;
+}
+
+.clearfix {
+    clear: both;
+    display: block;
+}
+
+.js-hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.wti-hidden {
+    display: none;
+    visibility: hidden;
+}
+
+@media screen and(max-width: 650px) {
+    .wti-mobile-hidden {
+        display: none;
+        visibility: hidden;
+    }
+}

@@ -1,0 +1,84 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}Generate reports{% endblock %}
+
+{% block content %}
+{% set cardHeading = 'Generate reoprts' %}
+    <div class="wti-main-content-wrapper">
+
+        <div class="wti-card wti-card-full">
+            <div class="wti-card-header">
+                {{ icons.husband('husband-icon') }}
+                {{ cardHeading }}
+            </div>
+            <div class="wti-card-content">
+                <form class="" action="/admin/generate-reports" method="post">
+
+                    <div class="wti-new-case-wrapper">
+        
+                        <div class="spaced-text">
+                            <p class="lede">Select the report type you wish to generate.</p>
+                        </div>
+        
+                        <div class="wti-new-case-row">
+                            <div class="wti-new-case-section">
+                                
+                                {{ forms.selectInput('reportType', 'Report type', [
+                                    {text: 'Time based', value: 'time', target: 'timeDetails'},
+                                    {text: 'Species based', value: 'species', target: 'speciesDetails'},
+                                    {text: 'IUCN redlist', value: 'iucn'},
+                                    {text: 'Outcome', value: 'outcome'},
+                                    {text: 'Cause of displacement', value: 'displacement'}
+                                ], "", errors.reportType)}}
+
+                                <div id="timeDetails" class="js-hidden">
+                                    {{ forms.dateInput('startDate', 'Start date', "", errors.startDate) }}
+                                    {{ forms.dateInput('endDate', 'End date', "", errors.endDate) }}
+                                </div>
+
+                                <div id="speciesDetails" class="js-hidden">
+
+                                    <div>
+                                        <p class="reports-help-text">Select one two or three options.</p>
+                                    </div>
+
+                                    {{ forms.selectInput('class', 'Class', [
+                                        {text: 'Mammals', value: 'mammals'},
+                                        {text: 'Aves', value: 'aves'},
+                                        {text: 'Reptiles', value: 'reptiles'}
+                                    ], record.class, errors.class)}}
+            
+                                    {{ forms.selectInput('groupName', 'Group name', [], record.groupName, errors.groupName) }}
+                                    {{ forms.selectInput('identityName', 'Identity', [], record.identityName, errors.identityName)}}
+
+
+                                </div>
+
+                                {{ forms.hiddenInput('_csrf', _csrf )}}
+                                <div class="wti-button-wrapper">
+                                    {{ forms.submitButton('submit', 'primary', 'Generate report') }}
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="wti-card-footer">
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="/scripts/gatherData.js"></script>
+{% endblock %}

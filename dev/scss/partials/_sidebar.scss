@@ -1,0 +1,75 @@
+.sidebar {
+    width: 18%;
+    background-color: $secondary-colour;
+}
+
+.sidebar-nav {
+    position: fixed;
+    padding-top: 1rem;
+}
+
+.sidebar-nav-link {
+    padding: .75rem 1rem;
+    display: block;
+    text-decoration: none;
+    color: $inactive-text-colour;
+}
+
+.sidebar-nav-link:hover {
+    text-decoration: none;
+    color: $inactive-text-hover-colour;
+}
+
+.sidebar-nav-link:hover > .icon-sidebar {
+    fill: $inactive-text-hover-colour;
+}
+
+.sidebar-nav-link:hover > .trans-fill-icon {
+    fill: $secondary-colour;
+}
+
+.sidebar-nav-link.active-nav-link {
+    color: $text-colour;
+}
+
+.sidebar-nav-link.active-nav-link > .icon-sidebar {
+    fill: $text-colour;
+}
+
+.sidebar-nav-link.active-nav-link > .trans-fill-icon {
+    fill: $secondary-colour;
+}
+
+.sidebar-nav-link.active-nav-link:hover {
+    color: $inactive-text-hover-colour;
+}
+
+.sidebar-nav-link.active-nav-link:hover > .icon-sidebar {
+    fill: $inactive-text-hover-colour;
+}
+
+.sidebar-nav-link.active-nav-link:hover > .trans-fill-icon {
+    fill: $secondary-colour;
+}
+
+@media screen and(max-width: 900px) {
+    .wti-sidebar-label {
+        font-size: 90%;
+    }
+}
+
+@media screen and(max-width: 650px) {
+    .sidebar-nav-link {
+        text-align: center;
+    }
+
+    .wti-sidebar-label {
+        font-size: 80%;
+    }
+
+    .wti-sidebar-label::before {
+        font-size: 80%;
+        content: '\A';
+        white-space: pre;
+    }
+}

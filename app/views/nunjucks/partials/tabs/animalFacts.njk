@@ -1,0 +1,71 @@
+<div id="animalFacts" class="wti-case-tab {% if not activeTab or activeTab !== 'animalFacts' %}js-hidden{% endif %}">
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item">
+            <h2 class="wti-case-tab-heading">Animal details</h2>
+        </div>
+        {% if success %}
+        <div class="wti-case-flex-item wti-case-tab-success-message-wrapper">
+            <p class="wti-case-tab-success-message">Record updated</p>
+        </div>
+        {% endif %}
+    </div>    
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('caseNumber', 'Case number', record.caseNumber, errors.caseNumber, false, false, true) }}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.dateInput('dateAdded', 'Date added', record.dateAdded | asDateInputString, errors.dateAdded, false, false, true) }}
+        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('ageYears', 'Age (years)', record.ageYears, errors.ageYears) }}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.textInput('ageMonths', 'Age (months)', record.ageMonths, errors.ageMonths) }}
+        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.selectInput('stage', 'Stage', [
+                {text: 'Infant', value: 'Infant'},
+                {text: 'Neonate', value: 'Neonate'},
+                {text: 'Subadult', value: 'Subadult'},
+                {text: 'Adult', value: 'Adult'}
+            ], record.stage, errors.stage)}}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.selectInput('sex', 'Sex', [
+                {text: 'Male', value: 'M'},
+                {text: 'Female', value: 'F'},
+                {text: 'Unknown', value: 'UK'},
+                {text: 'Unsexed', value: 'US'}
+            ], record.sex, errors.sex)}}        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('weightKg', 'Body Weight (kg)', record.weightKg, errors.weightKg) }}
+
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.textInput('weightG', 'Body Weight (g)', record.weightG, errors.weightG) }}
+        </div>
+    </div>
+
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('lengthSnoutVent', 'Length: Body - Snout-vent (cm)', record.lengthSnoutVent, errors.lengthSnoutVent) }}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.textInput('lengthTailShoulder', 'Length: Body - Tail/Shoulder (cm)', record.lengthTailShoulder, errors.lengthTailShoulder) }}
+        </div>
+    </div>
+
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item">
+            {{ forms.fileInput('pictureOnArrival', 'Picture on arrival', record.pictureOnArrival, errors.pictureOnArrival) }}
+        </div>
+    </div>
+
+    <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+</div>

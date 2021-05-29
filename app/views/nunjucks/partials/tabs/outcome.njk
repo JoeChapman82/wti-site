@@ -1,0 +1,146 @@
+<div id="outcome" class="wti-case-tab {% if not activeTab or activeTab !== 'outcome' %}js-hidden{% endif %}">
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item">
+            <h2 class="wti-case-tab-heading">Outcome</h2>
+        </div>
+        {% if success %}
+        <div class="wti-case-flex-item wti-case-tab-success-message-wrapper">
+            <p class="wti-case-tab-success-message">Record updated</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.textInput('caseNumber', 'Case number', record.caseNumber, errors.caseNumber, false, false, true) }}
+        </div>
+        <div class="wti-case-flex-item">
+            {{ forms.dateInput('dateAdded', 'Date added', record.dateAdded | asDateInputString, errors.dateAdded, false, false, true) }}
+        </div>
+    </div>
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item wti-case-flex-item-margined">
+            {{ forms.selectInput('finalDisposition', 'Final disposition', [
+                {text: 'Dead on arrival', value: 'Dead on arrival'},
+                {text: 'Died under care', value: 'Died in captivity', target: 'diedUnderCareDetails'},
+                {text: 'Released', value: 'Released', target: 'releasedDetails'},
+                {text: 'Transferred', value: 'Transferred', target: 'transferredDetails'},
+                {text: 'Escaped', value: 'Escaped', target: 'escapedDetails'},
+                {text: 'Pending under care', value: 'Pending under care', target: 'pendingUnderCareDetails'}
+            ], record.finalDisposition, errors.finalDisposition)}}
+        </div>
+    </div>
+
+    <div id="diedUnderCareDetails" class="final-disposition-extra js-hidden">
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item wti-case-flex-item-margined">
+                {{ forms.dateInput('dateOfDeath', 'Date of death', record.dateOfDeath | asDateInputString, errors.dateOfDeath) }}
+            </div>
+            <div class="wti-case-flex-item">
+                {{ forms.textInput('clinicalSigns', 'Clinical signs before death', record.clinicalSigns, errors.clinicalSigns) }}
+            </div>
+        </div>
+
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item">
+                {{ forms.fileInput('pmReport', 'PM Report', record.pmReport, errors.pmReport) }}
+            </div>
+        </div>
+    </div>
+
+    <div id="releasedDetails" class="final-disposition-extra js-hidden">
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item wti-case-flex-item-margined">
+                {{ forms.dateInput('dateOfRelease', 'Date of release', record.dateOfRelease | asDateInputString, errors.dateOfRelease) }}
+            </div>
+            <div class="wti-case-flex-item">
+                {{ forms.textInput('placeOfRelease', 'Place of release', record.placeOfRelease, errors.placeOfRelease) }}
+            </div>
+        </div>
+
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item wti-case-flex-item-margined">
+                {{ forms.textInput('gpsLatitudeRelease', 'GPS Latitude, (eg 28.666567 N)', record.gpsLatitudeRelease, errors.gpsLatitudeRelease) }}
+            </div>
+            <div class="wti-case-flex-item">
+                {{ forms.textInput('gpsLongditudeRelease', 'GPS Longditude, (eg 90.544328 E)', record.gpsLongditudeRelease, errors.gpsLongditudeRelease) }}
+            </div>
+        </div>
+
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item wti-case-flex-item-margined">
+                {{ forms.selectInput('marked', 'Marked', [
+                    {text: 'Yes', value: 'Yes'},
+                    {text: 'No', value: 'No'}
+                ], record.marked, errors.marked)}}
+            </div>
+            <div class="wti-case-flex-item">
+                {{ forms.selectInput('markedType', 'Type of marking', [
+                    {text: 'Radio tag', value: 'Radio tag'},
+                    {text: 'Paint', value: 'Paint'},
+                    {text: 'Ear tag', value: 'Ear tag'},
+                    {text: 'Tattoo', value: 'Tattoo'},
+                    {text: 'Ring/band', value: 'Ring/band'},
+                    {text: 'Other', value: 'Other'}
+                ], record.markedType, errors.markedType)}}
+            </div>
+        </div>
+
+    </div>
+
+    <div id="pendingUnderCareDetails" class="final-disposition-extra js-hidden">
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item wti-case-flex-item-margined">
+                {{ forms.textInput('housing', 'Housing', record.housing, errors.housing) }}
+            </div>
+            <div class="wti-case-flex-item">
+                {{ forms.textInput('reasonPendingUnderCare', 'Reason', record.reasonPendingUnderCare, errors.reasonPendingUnderCare) }}
+            </div>
+        </div>
+    </div>
+
+    <div id="transferredDetails" class="final-disposition-extra js-hidden">
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item wti-case-flex-item-margined">
+                {{ forms.dateInput('dateOfTransfer', 'Date of transfer', record.dateOfTransfer | asDateInputString, errors.dateOfTransfer) }}
+            </div>
+            <div class="wti-case-flex-item">
+                {{ forms.textInput('placeOfTransfer', 'Place of transfer', record.placeOfTransfer, errors.placeOfTransfer) }}
+            </div>
+        </div>
+
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item">
+                {{ forms.textInput('reasonTransfer', 'Reason for transfer', record.reasonTransfer, errors.reasonTransfer) }}
+            </div>
+        </div>
+    </div>
+
+    <div id="escapedDetails" class="final-disposition-extra js-hidden">
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item wti-case-flex-item-margined">
+                {{ forms.dateInput('dateOfEscape', 'Date of escape', record.dateOfEscape | asDateInputString, errors.dateOfEscape) }}
+            </div>
+            <div class="wti-case-flex-item">
+                {{ forms.textInput('placeOfEscape', 'Place of escape', record.placeOfEscape, errors.placeOfEscape) }}
+            </div>
+        </div>
+
+        <div class="wti-case-flex-wrapper">
+            <div class="wti-case-flex-item">
+                {{ forms.textInput('reasonEscape', 'Reason for escape', record.reasonEscape, errors.reasonEscape) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="wti-case-flex-wrapper">
+        <div class="wti-case-flex-item">
+            {{ forms.textAreaInput('remarks', 'Remarks', record.remarks, errors.remarks, false, false, false) }}
+        </div>
+    </div>
+
+
+
+    <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+
+
+</div>

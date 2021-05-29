@@ -1,0 +1,45 @@
+{% extends "nunjucks/templates/main.njk" %}
+{% import "nunjucks/macros/forms.njk" as forms %}
+{% import "nunjucks/macros/typography.njk" as typography %}
+{% import "nunjucks/macros/navigation.njk" as navigation %}
+{% import "nunjucks/macros/icons.njk" as icons %}
+
+{% block pageTitle %}Existing case{% endblock %}
+
+{% block content %}
+    <div class="wti-main-content-wrapper">
+
+        <div class="wti-case-wrapper">
+            <div class="wti-case-tabs">
+                <ul class="wti-case-tabs-list">
+                    <li class="wti-case-tabs-list-item {% if not activeTab or activeTab === 'rescueDetails' %}wti-case-tabs-list-item-active{% endif %}">
+                        <a class="wti-case-tabs-list-link" href="#" data-reveal="rescueDetails">Case identity</a>
+                    </li>
+                    <li class="wti-case-tabs-list-item {% if activeTab and activeTab === 'admissionDetails' %}wti-case-tabs-list-item-active{% endif %}">
+                        <a class="wti-case-tabs-list-link" href="#" data-reveal="admissionDetails">Rescue details</a>
+                    </li>
+                    <li class="wti-case-tabs-list-item {% if activeTab and activeTab === 'animalFacts' %}wti-case-tabs-list-item-active{% endif %}">
+                        <a class="wti-case-tabs-list-link" href="#" data-reveal="animalFacts">Animal details</a>
+                    </li>
+                    <li class="wti-case-tabs-list-item {% if activeTab and activeTab === 'initialExamination' %}wti-case-tabs-list-item-active{% endif %}">
+                        <a class="wti-case-tabs-list-link" href="#" data-reveal="initialExamination">Vetinary record</a>
+                    </li>
+                    <li class="wti-case-tabs-list-item {% if activeTab and activeTab === 'outcome' %}wti-case-tabs-list-item-active{% endif %}">
+                        <a class="wti-case-tabs-list-link" href="#" data-reveal="outcome">Outcome</a>
+                    </li>
+                </ul>
+            </div>
+            <form class="" action="/admin/existing-case/{{ record._id }}" method="post">
+                {% include "nunjucks/partials/tabs/rescueDetails.njk" %}
+                {% include "nunjucks/partials/tabs/admissionDetails.njk" %}
+                {% include "nunjucks/partials/tabs/animalFacts.njk" %}
+                {% include "nunjucks/partials/tabs/initialExamination.njk" %}
+                {% include "nunjucks/partials/tabs/outcome.njk" %}
+                <input type="hidden" name="_csrf" value="{{ _csrf }}">
+                <input id="activeTab" type="hidden" name="activeTab" value="{{ activeTab | default('rescueDetails')}}">
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

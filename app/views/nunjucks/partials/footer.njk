@@ -1,0 +1,9 @@
+<footer class="footer">
+    <div class="footer-text-wrapper">
+        <p class="wti-light-text">Copyright © Wildlife Trust of India {{ currentYear }}</p>
+        <p class="wti-light-text">Last backup: {% if not lastBackupTime %}None{% else %}{{ lastBackupTime | asDayMonthYearTime }}{% endif %}</p>
+    </div>
+    <div class="footer-to-top-wrapper">
+        <a class="to-top-link" href="#">{{ icons.upArrow('') }}</a>
+    </div>
+</footer>
