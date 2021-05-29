@@ -1,3 +1,46 @@
+function parseDate(input) {
+    if (typeof input !== 'string') {
+        return new Date();
+    }
+    const months = {
+        'Jan': 0,
+        'Feb': 1,
+        'Mar': 2,
+        'Apr': 3,
+        'May': 4,
+        'Jun': 5,
+        'Jul': 6,
+        'Aug': 7,
+        'Sep': 8,
+        'Oct': 9,
+        'Nov': 10,
+        'Dec': 11,
+    };
+    // parse expected date
+    const dateParts = input.split('-');
+    if (dateParts.length < 3) {
+        return new Date();
+    }
+    let day = +dateParts[0];
+    if (!Number.isFinite(day)) {
+        day = 1;
+    }
+    const month = months[dateParts[1]] ?? 0;
+    let year = Number.parseInt(dateParts[2], 10);
+    if (!Number.isFinite(year)) {
+        year = new Date().getFullYear();
+    } else {
+        if (year > 95) {
+            year = year + 1900;
+        } else {
+            year = 2000 + year;
+        }
+    }
+    const date = new Date();
+    date.setFullYear(year, month, day);
+    return date;
+}
+
 module.exports = {
     'Case ID': {
         linkedField: "caseNumber",
@@ -17,10 +60,7 @@ module.exports = {
     'Date of rescue/displacement': {
         linkedField: "dateOfRescue",
         method: (value) => {
-            if(!value) {
-                return {dateOfRescue: ""};
-            }
-            return {dateOfRescue: new Date(value)};
+            return {dateOfRescue: parseDate(value)};
         },
         skip: false
     },
@@ -62,10 +102,7 @@ module.exports = {
     'Date of admission/intervention': {
         linkedField: "dateOfAdmission",
         method: (value) => {
-            if(!value) {
-                return {dateOfAdmission: ""};
-            }
-            return {dateOfAdmission: new Date(value)};
+            return {dateOfAdmission: parseDate(value)};
         },
         skip: false
     },
@@ -121,10 +158,7 @@ module.exports = {
     'Date of outcome': {
         linkedField: "dateOfOutcome",
         method: (value) => {
-            if(!value) {
-                return {dateOfOutcome: ""};
-            }
-            return {dateOfOutcome: new Date(value)};
+            return {dateOfOutcome: parseDate(value)};
         },
         skip: false
     },
@@ -146,6 +180,6 @@ module.exports = {
     'Remarks': {
         linkedField: "remarks",
         method: false,
-        skip: true     
+        skip: true
     }
 }

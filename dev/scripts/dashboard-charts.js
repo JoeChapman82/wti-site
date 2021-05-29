@@ -5,7 +5,7 @@
     var monthCounts = dashboardData.monthCounts;
     var classCounts = dashboardData.classCounts;
     var groupCounts = dashboardData.groupCounts;
-    var zoneCounts = dashboardData.zoneCounts;    
+    var zoneCounts = dashboardData.zoneCounts;
     var lineLabels = Object.values(monthCounts).map(function(x) {
         return x.date;
     });
@@ -16,6 +16,7 @@
     var barValues = Object.values(classCounts);
     var pieLabels = Object.keys(groupCounts);
     var pieValues = Object.values(groupCounts);
+    console.log(pieValues, pieLabels);
     var pie2Labels = Object.keys(zoneCounts);
     var pie2Values = Object.values(zoneCounts);
 
@@ -69,23 +70,23 @@
         },
     });
 
-    new Chartist.Pie('#dashboardPieChart', {
-        labels: pieLabels,
-        series: pieValues,
-    }, {
-        labelInterpolationFnc: function(value, index) {
-            var percentage = Math.round(pieValues[index] / pieValues.reduce(function(a, b) {
-                return a + b;
-            }) * 100) + '%';
-            return percentage;
-        },
-        startAngle: 270,
-        labelOffset: 15,
-        showLabel: true,
-        plugins: [
-            Chartist.plugins.legend()
-        ]
-    });
+    // new Chartist.Pie('#dashboardPieChart', {
+    //     labels: pieLabels,
+    //     series: pieValues,
+    // }, {
+    //     labelInterpolationFnc: function(value, index) {
+    //         var percentage = Math.round(pieValues[index] / pieValues.reduce(function(a, b) {
+    //             return a + b;
+    //         }) * 100) + '%';
+    //         return percentage;
+    //     },
+    //     startAngle: 270,
+    //     labelOffset: 15,
+    //     showLabel: true,
+    //     plugins: [
+    //         Chartist.plugins.legend()
+    //     ]
+    // });
 
     new Chartist.Pie('#dashboardPieChart2', {
         labels: pie2Labels,
@@ -110,7 +111,7 @@
     //         console.log(thing);
     //     });
     // }, 1);
-  
+
 
 
 

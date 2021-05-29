@@ -1,9 +1,11 @@
+require('dotenv').config();
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
 const nodemon = require('gulp-nodemon');
 const uglify = require('gulp-uglify-es').default;
 const pump = require('pump');
+const path = require('path');
 
 const gulpConfig = {
     paths: {
@@ -12,8 +14,8 @@ const gulpConfig = {
         js: `${__dirname}/dev/scripts/**/*.js`,
         jsDest: `${__dirname}/app/assets/scripts`,
         nunjucks: `${__dirname}/app/views/**/*.njk`,
-        key: `${__dirname}/dev/certs/server.key`,
-        cert: `${__dirname}/dev/certs/server.crt`
+        key: path.resolve(__dirname, process.env.KEY_FILE_PATH),
+        cert: path.resolve(__dirname, process.env.CERT_FILE_PATH),
     }
 };
 
@@ -46,7 +48,7 @@ function nunjucks() {
 
 function initBrowserSync() {
     browserSync.init({
-        proxy: 'https://localhost:4000',
+        proxy: `https://localhost:${process.env.PORT}`,
         port: 4001,
         reloadDelay: 1000,
         ghostMode: {

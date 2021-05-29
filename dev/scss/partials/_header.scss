@@ -10,7 +10,7 @@
     top: 0;
     left: 0;
 }
- 
+
 .header-logo {
     background-image: url('/images/wti-logo-small.png');
     background-repeat: no-repeat;
@@ -21,6 +21,7 @@
     height: 40px;
     border-radius: 5px;
     display: inline-block;
+    margin: 0 0.25rem 0 0;
 }
 
 .header-logo-2 {
@@ -33,6 +34,13 @@
     height: 40px;
     border-radius: 5px;
     display: inline-block;
+    margin: 0 0.25rem 0 0
+}
+.header-site-title {
+    font-size: 12px;
+    @media screen and (min-width: 480px) {
+        font-size: 16px;
+    }
 }
 
 .current-user {
