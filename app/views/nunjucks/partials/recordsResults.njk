@@ -38,11 +38,11 @@
                         </td>
                         <td class="">{{ record.iucnCategory }}</td>
                         <td class="">{{ record.class }}</td>
-                        <td class="">{{ record.dateOfAdmission | asDayMonthYearTime }}</td>
+                        <td class="">{{ record.dateOfAdmission | asDateLocale }}</td>
                         <td>{{ record.placeOfRescue }}</td>
                         <td class="">{{ record.zoneName }}</td>
                         <td class="">{{ record.finalDisposition }}</td>
-                        <td class="">{{ record.dateOfOutcome | asDayMonthYearTime }}</td>
+                        <td class="">{{ record.dateOfOutcome | asDateLocale }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
