@@ -30,7 +30,11 @@ function parseDate(input) {
     if (!Number.isFinite(year)) {
         year = new Date().getFullYear();
     } else {
-        year = 2000 + year;
+        if (year > 95) {
+            year = year + 1900;
+        } else {
+            year = 2000 + year;
+        }
     }
     const date = new Date();
     date.setFullYear(year, month, day);
