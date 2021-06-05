@@ -44,14 +44,6 @@ module.exports = async (req, res, next) => {
 			}
 
 			// Now normalize some common cases
-			// > Normalize remarks
-			recordToUpdate.remarks =
-				typeof recordToUpdate.remarks !== 'undefined'
-					? recordToUpdate.remarks
-					: '';
-			if (recordToUpdate.remarks[0] === '"') {
-				recordToUpdate.remarks = recordToUpdate.remarks.substring(1);
-			}
 			// > Normalize case specifics
 			const caseSpecifics = recordToUpdate.caseNumber.split('/');
 			recordToUpdate.zoneName = `${caseSpecifics[0]}/${caseSpecifics[1]}`;
