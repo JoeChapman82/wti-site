@@ -4,6 +4,7 @@ const csv = require('csv-parser');
 const Record = require('../model/record/record');
 const uploadMap = require('../data/maps/uploadMap');
 const AnimalData = require('../model/animalData/animalData');
+const { gatherData } = require('../helpers/dashboardDataRunner');
 
 module.exports = async (req, res, next) => {
 	let animalData = await AnimalData.find({});
@@ -91,6 +92,9 @@ module.exports = async (req, res, next) => {
 							msg: 'File received. Commencing upload process. This may take a few minutes.',
 						},
 					};
+					return gatherData();
+				})
+				.then(() => {
 					return next();
 				})
 				.catch(err => {

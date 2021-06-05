@@ -1,6 +1,6 @@
 const findRecords = require('../../model/record/read');
 const redirects = require('../../controllers/redirects');
-const dashboardDataRunner = require('../../helpers/dashboardDataRunner');
+const { dashboardDataRunner } = require('../../helpers/dashboardDataRunner');
 
 module.exports = async (req, res, next) => {
 	const keys = [

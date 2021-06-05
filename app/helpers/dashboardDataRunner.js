@@ -3,8 +3,6 @@ const getPastTwelveMonths = require('./getPastTwelveMonths');
 const { updateDashboardDataTimeMs } = require('../config/main');
 let dashboardData = {};
 
-module.exports = () => dashboardData;
-
 async function gatherData() {
 	console.log('Starting dashboard data gather', new Date());
 	const keys = [];
@@ -71,3 +69,8 @@ async function gatherData() {
 
 gatherData();
 setInterval(gatherData, updateDashboardDataTimeMs);
+
+module.exports = {
+	dashboardDataRunner: () => dashboardData,
+	gatherData,
+};
