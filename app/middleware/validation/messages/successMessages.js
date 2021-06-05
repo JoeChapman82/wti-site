@@ -1,3 +1,3 @@
 module.exports = {
-    passedValidation: 'Validation passed'
+	passedValidation: 'Validation passed',
 };

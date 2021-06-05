@@ -1,3 +1,3 @@
 module.exports = (value, array) => {
-    return array.includes(value);
+	return array.includes(value);
 };

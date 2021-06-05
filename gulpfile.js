@@ -8,78 +8,93 @@ const pump = require('pump');
 const path = require('path');
 
 const gulpConfig = {
-    paths: {
-        scss: `${__dirname}/dev/scss/**/*.scss`,
-        scssDest: `${__dirname}/app/assets/css`,
-        js: `${__dirname}/dev/scripts/**/*.js`,
-        jsDest: `${__dirname}/app/assets/scripts`,
-        nunjucks: `${__dirname}/app/views/**/*.njk`,
-        key: path.resolve(__dirname, process.env.KEY_FILE_PATH),
-        cert: path.resolve(__dirname, process.env.CERT_FILE_PATH),
-    }
+	paths: {
+		scss: `${__dirname}/dev/scss/**/*.scss`,
+		scssDest: `${__dirname}/app/assets/css`,
+		js: `${__dirname}/dev/scripts/**/*.js`,
+		jsDest: `${__dirname}/app/assets/scripts`,
+		nunjucks: `${__dirname}/app/views/**/*.njk`,
+		key: path.resolve(__dirname, process.env.KEY_FILE_PATH),
+		cert: path.resolve(__dirname, process.env.CERT_FILE_PATH),
+	},
 };
 
 function compileSass() {
-    try {
-        return gulp.src(gulpConfig.paths.scss)
-            .pipe(sass({
-                outputStyle: 'compressed'
-            })
-                .on('error', sass.logError))
-            .pipe(gulp.dest(gulpConfig.paths.scssDest))
-            .pipe(browserSync.reload({
-                stream: true
-            }));
-    }
-    catch(error) {
-        console.log(error);
-    }
+	try {
+		return gulp
+			.src(gulpConfig.paths.scss)
+			.pipe(
+				sass({
+					outputStyle: 'compressed',
+				}).on('error', sass.logError)
+			)
+			.pipe(gulp.dest(gulpConfig.paths.scssDest))
+			.pipe(
+				browserSync.reload({
+					stream: true,
+				})
+			);
+	} catch (error) {
+		console.log(error);
+	}
 }
 
 function minifyJs() {
-    return gulp.src(gulpConfig.paths.js)
-        .pipe(uglify())
-        .pipe(gulp.dest(gulpConfig.paths.jsDest));
+	return gulp
+		.src(gulpConfig.paths.js)
+		.pipe(uglify())
+		.pipe(gulp.dest(gulpConfig.paths.jsDest));
 }
 
 function nunjucks() {
-    browserSync.reload();
+	browserSync.reload();
 }
 
 function initBrowserSync() {
-    browserSync.init({
-        proxy: `https://localhost:${process.env.PORT}`,
-        port: 4001,
-        reloadDelay: 1000,
-        ghostMode: {
-            clicks: false,
-            forms: false,
-            scroll: false
-        },
-        https: {
-            key: gulpConfig.paths.key,
-            cert: gulpConfig.paths.cert
-        },
-        open: false
-    });
+	browserSync.init({
+		proxy: `https://localhost:${process.env.PORT}`,
+		port: 4001,
+		reloadDelay: 1000,
+		ghostMode: {
+			clicks: false,
+			forms: false,
+			scroll: false,
+		},
+		https: {
+			key: gulpConfig.paths.key,
+			cert: gulpConfig.paths.cert,
+		},
+		open: false,
+	});
 }
 
 function serverTask() {
-    nodemon({
-        script: 'index.js',
-        ext: 'js'
-    }).on('quit', function() {
-        process.exit(0);
-    });
+	nodemon({
+		script: 'index.js',
+		ext: 'js',
+	}).on('quit', function () {
+		process.exit(0);
+	});
 }
 
 // watch all scss and js files, run required tasks, refresh browser
 function watch() {
-    gulp.watch(gulpConfig.paths.scss, {interval: 1000, mode: 'poll'}, compileSass);
-    gulp.watch(gulpConfig.paths.js, {interval: 1000, mode: 'poll'}, minifyJs);
-    gulp.watch(gulpConfig.paths.nunjucks, {interval: 1000, mode: 'poll'}, nunjucks);
+	gulp.watch(
+		gulpConfig.paths.scss,
+		{ interval: 1000, mode: 'poll' },
+		compileSass
+	);
+	gulp.watch(gulpConfig.paths.js, { interval: 1000, mode: 'poll' }, minifyJs);
+	gulp.watch(
+		gulpConfig.paths.nunjucks,
+		{ interval: 1000, mode: 'poll' },
+		nunjucks
+	);
 }
 
-gulp.task('default', gulp.parallel(watch, compileSass, minifyJs, serverTask, initBrowserSync));
+gulp.task(
+	'default',
+	gulp.parallel(watch, compileSass, minifyJs, serverTask, initBrowserSync)
+);
 
 // gulp.task('default', gulp.parallel(watch, compileSass, minifyJs, server, initBrowserSync));

@@ -1,66 +1,65 @@
 .link {
-    color: $link-colour-primary;
-    text-decoration: none;
+	color: $link-colour-primary;
+	text-decoration: none;
 }
 
 .header-home-link {
-    color: $inactive-text-bright-colour;
-    text-decoration: none;
-    font-size: $font-size-large;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	color: $inactive-text-bright-colour;
+	text-decoration: none;
+	font-size: $font-size-large;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .header-home-link:hover {
-    color: $inactive-text-hover-colour;
+	color: $inactive-text-hover-colour;
 }
 
 .header-home-link:hover > .header-logo {
-     background-color: $inactive-text-hover-colour;
+	background-color: $inactive-text-hover-colour;
 }
 
-
 .to-top-link {
-    color: $text-colour-light;
-    display: block;
-    width: 100%;
-    text-align: center;
-    height: 100%;
-    // vertical-align: middle;
-    padding-top: 25%;
-    background-color: $button-colour-dark;
-    border-radius: 3px;
+	color: $text-colour-light;
+	display: block;
+	width: 100%;
+	text-align: center;
+	height: 100%;
+	// vertical-align: middle;
+	padding-top: 25%;
+	background-color: $button-colour-dark;
+	border-radius: 3px;
 }
 
 .to-top-link:hover {
-    background-color: $button-colour-dark-hover;
+	background-color: $button-colour-dark-hover;
 }
 
 .wti-card-link {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 .administration-link-wrapper {
-    width: 33%;
-    height: 120px;
-    margin: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	width: 33%;
+	height: 120px;
+	margin: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .administration-link {
-    background-color: $tertiary-colour;
-    border: 2px solid $button-colour-dark;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    padding: 47px 0;
-    border-radius: 3px;
-    box-shadow: 2px 2px 2px $button-colour-dark;
+	background-color: $tertiary-colour;
+	border: 2px solid $button-colour-dark;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	padding: 47px 0;
+	border-radius: 3px;
+	box-shadow: 2px 2px 2px $button-colour-dark;
 }
 
 .administration-link:active {
-    box-shadow: 1px 1px 1px $button-colour-dark;
+	box-shadow: 1px 1px 1px $button-colour-dark;
 }

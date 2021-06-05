@@ -1,11 +1,11 @@
 module.exports = [
-   'caseNumber',
-   'placeOfRescue',
-   'groupName',
-   'identityName',
-   'class',
-   'zoneName',
-   'createdBy',
-   'lastUpdatedBy',
-   'dateAdded'
-]
+	'caseNumber',
+	'placeOfRescue',
+	'groupName',
+	'identityName',
+	'class',
+	'zoneName',
+	'createdBy',
+	'lastUpdatedBy',
+	'dateAdded',
+];

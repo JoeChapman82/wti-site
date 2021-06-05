@@ -1,155 +1,155 @@
 .wti-case-tabs-list {
-    width: 100%;
-    display: flex;
+	width: 100%;
+	display: flex;
 }
 
 .wti-case-tab {
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, .03);
-    border: 1px solid rgba(0, 0, 0, .125);
-    border-top: 0;
-    min-height: 400px;
-    color: $black;
+	padding: 1rem;
+	background-color: rgba(0, 0, 0, 0.03);
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-top: 0;
+	min-height: 400px;
+	color: $black;
 }
 
 .wti-case-tabs-list-item {
-    display: block;
-    width: 100%;
-    border: 1px solid rgba(0, 0, 0, .125);
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    color: #007bff;
+	display: block;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	color: #007bff;
 }
 
 .wti-case-tabs-list-item-active {
-    background-color: rgba(0, 0, 0, .03);
-    border-bottom: 0;
-    color: $dark-text-colour;
+	background-color: rgba(0, 0, 0, 0.03);
+	border-bottom: 0;
+	color: $dark-text-colour;
 }
 
 .wti-case-tabs-list-item > a {
-    color: #007bff;
+	color: #007bff;
 }
 
 .wti-case-tabs-list-item-active > a {
-    color: $dark-text-colour;
+	color: $dark-text-colour;
 }
 
 .wti-case-tabs-list-link,
 .wti-case-tabs-list-link:active,
 .wti-case-tabs-list-link:visited,
 .wti-case-tabs-list-link:link {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    padding: 1rem;
-    text-decoration: none;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding: 1rem;
+	text-decoration: none;
 }
 
 .wti-case-tab-heading {
-    font-size: 170%;
-    width: auto;
-    display: inline-block;
-    padding-bottom: .5rem;
-    margin-bottom: 1rem;
+	font-size: 170%;
+	width: auto;
+	display: inline-block;
+	padding-bottom: 0.5rem;
+	margin-bottom: 1rem;
 }
 
 .wti-case-section-heading {
-    font-size: 130%;
-    width: auto;
-    display: inline-block;
-    padding-bottom: .5rem;
-    margin-bottom: 1rem;
+	font-size: 130%;
+	width: auto;
+	display: inline-block;
+	padding-bottom: 0.5rem;
+	margin-bottom: 1rem;
 }
 
 .wti-case-flex-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    flex-wrap: nowrap;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: nowrap;
 }
 
 .wti-case-flex-item {
-    width: 100%;
-    margin-bottom: .75rem;
+	width: 100%;
+	margin-bottom: 0.75rem;
 }
 
 .wti-case-flex-item-margined {
-    margin-right: 1rem;
+	margin-right: 1rem;
 }
 
 .wti-new-case-wrapper {
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, .03);
-    border: 1px solid rgba(0, 0, 0, .125);
-    min-height: 400px;
-    color: $dark-text-colour;
-    width: 50%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+	padding: 1rem;
+	background-color: rgba(0, 0, 0, 0.03);
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	min-height: 400px;
+	color: $dark-text-colour;
+	width: 50%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .wti-new-case-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    margin-bottom: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	margin-bottom: 2rem;
 }
 
 .wti-new-case-section {
-    width: 100%;
-    padding-right: 1rem;
+	width: 100%;
+	padding-right: 1rem;
 }
 
 @media screen and(max-width: 650px) {
-    .wti-case-flex-wrapper {
-        flex-wrap: wrap;
-    }
+	.wti-case-flex-wrapper {
+		flex-wrap: wrap;
+	}
 
-    .wti-case-flex-item-margined {
-        margin-right: 0;
-    }
+	.wti-case-flex-item-margined {
+		margin-right: 0;
+	}
 
-    .wti-case-tabs-list-link,
-    .wti-case-tabs-list-link:active,
-    .wti-case-tabs-list-link:visited,
-    .wti-case-tabs-list-link:link {
-        padding: .5rem;
-        font-size: 85%;
-    }
+	.wti-case-tabs-list-link,
+	.wti-case-tabs-list-link:active,
+	.wti-case-tabs-list-link:visited,
+	.wti-case-tabs-list-link:link {
+		padding: 0.5rem;
+		font-size: 85%;
+	}
 
-    .wti-new-case-row {
-        flex-wrap: wrap;
-    }
+	.wti-new-case-row {
+		flex-wrap: wrap;
+	}
 }
 
 .wti-case-tab-success-message {
-    color: $white;
-    font-size: 130%;
-    display: inline-block;
+	color: $white;
+	font-size: 130%;
+	display: inline-block;
 }
 
 .wti-case-check-icon {
-    color: $white;
-    padding-top: .1rem;
-    stroke-width: 3;
-    vertical-align: top;
+	color: $white;
+	padding-top: 0.1rem;
+	stroke-width: 3;
+	vertical-align: top;
 }
 
 .wti-case-tab-success-message-wrapper {
-    padding: .5rem;
-    border: 1px solid rgba(0, 0, 0, .125);
-    border-radius: 5px;
-    text-align: center;
-    background-color: $success-colour;
-    width: 300px;
-    opacity: 1;
-    transition: opacity .2s ease;
+	padding: 0.5rem;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-radius: 5px;
+	text-align: center;
+	background-color: $success-colour;
+	width: 300px;
+	opacity: 1;
+	transition: opacity 0.2s ease;
 }
 
 .fully-opaque {
-    opacity: 0;
+	opacity: 0;
 }

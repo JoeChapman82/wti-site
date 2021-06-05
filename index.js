@@ -12,13 +12,12 @@ const AWS = require('aws-sdk');
 const PORT = process.env.PORT;
 const app = express();
 
-
 const options = {
-    key: fs.readFileSync(path.join(__dirname, process.env.KEY_FILE_PATH)),
-    cert: fs.readFileSync(path.join(__dirname, process.env.CERT_FILE_PATH))
+	key: fs.readFileSync(path.join(__dirname, process.env.KEY_FILE_PATH)),
+	cert: fs.readFileSync(path.join(__dirname, process.env.CERT_FILE_PATH)),
 };
 
-AWS.config.update({region: process.env.AWS_REGION});
+AWS.config.update({ region: process.env.AWS_REGION });
 
 bootstrap(app);
 initDb();
@@ -27,8 +26,10 @@ createMasterData();
 
 const server = https.createServer(options, app);
 
-server.listen(PORT, () => console.log(`WTI Frontend listening on port ${PORT}`));
+server.listen(PORT, () =>
+	console.log(`WTI Frontend listening on port ${PORT}`)
+);
 
-if(process.env.CREATE_DUMMY_DATA === 'true') {
-    createDummyData();
+if (process.env.CREATE_DUMMY_DATA === 'true') {
+	createDummyData();
 }

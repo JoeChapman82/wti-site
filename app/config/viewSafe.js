@@ -1,3 +1,3 @@
 module.exports = {
-    serviceName: 'Animal Rescue Records'
+	serviceName: 'Animal Rescue Records',
 };

@@ -1,123 +1,123 @@
 .header {
-    height: 3.5rem;
-    background-color: $primary-colour;
-    padding: .5rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10;
-    position: sticky;
-    top: 0;
-    left: 0;
+	height: 3.5rem;
+	background-color: $primary-colour;
+	padding: 0.5rem 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 10;
+	position: sticky;
+	top: 0;
+	left: 0;
 }
 
 .header-logo {
-    background-image: url('/images/wti-logo-small.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: $inactive-text-bright-colour;
-    background-size: 95%;
-    width: 60px;
-    height: 40px;
-    border-radius: 5px;
-    display: inline-block;
-    margin: 0 0.25rem 0 0;
+	background-image: url('/images/wti-logo-small.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: $inactive-text-bright-colour;
+	background-size: 95%;
+	width: 60px;
+	height: 40px;
+	border-radius: 5px;
+	display: inline-block;
+	margin: 0 0.25rem 0 0;
 }
 
 .header-logo-2 {
-    background-image: url('/images/ifaw-small.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: $primary-colour;
-    background-size: 95%;
-    width: 60px;
-    height: 40px;
-    border-radius: 5px;
-    display: inline-block;
-    margin: 0 0.25rem 0 0
+	background-image: url('/images/ifaw-small.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: $primary-colour;
+	background-size: 95%;
+	width: 60px;
+	height: 40px;
+	border-radius: 5px;
+	display: inline-block;
+	margin: 0 0.25rem 0 0;
 }
 .header-site-title {
-    font-size: 12px;
-    @media screen and (min-width: 480px) {
-        font-size: 16px;
-    }
+	font-size: 12px;
+	@media screen and (min-width: 480px) {
+		font-size: 16px;
+	}
 }
 
 .current-user {
-    color: $inactive-text-colour;
-    text-align: right;
+	color: $inactive-text-colour;
+	text-align: right;
 }
 
 .current-user-option-select:hover {
-    color: $inactive-text-hover-colour;
+	color: $inactive-text-hover-colour;
 
-    .icon-user {
-        fill: $inactive-text-hover-colour;
-    }
-    position: relative;
+	.icon-user {
+		fill: $inactive-text-hover-colour;
+	}
+	position: relative;
 }
 
 .current-user-option-select {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .user-options-list {
-    display: none;
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: $inactive-text-hover-colour;
-    background-color: $primary-colour;
-    width: 100%;
-    text-align: center;
+	display: none;
+	visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: $inactive-text-hover-colour;
+	background-color: $primary-colour;
+	width: 100%;
+	text-align: center;
 }
 
 .secondary-user-details {
-    padding-top: .5rem;
-    padding-bottom: .5rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 
 .user-options-list-main {
-    padding-top: .25rem;
-    padding-bottom: .25rem;
+	padding-top: 0.25rem;
+	padding-bottom: 0.25rem;
 }
 
 .user-options-list-link,
 .user-options-list-link:active,
 .user-options-list-link:visited,
 .user-options-list-link:link {
-    color: $inactive-text-colour;
-    text-decoration: none;
-    font-size: 110%;
-    padding: .5rem;
-    display: inline-block;
-    width: 100%;
+	color: $inactive-text-colour;
+	text-decoration: none;
+	font-size: 110%;
+	padding: 0.5rem;
+	display: inline-block;
+	width: 100%;
 }
 
 .user-options-list-item-zero-pad {
-    padding: 0 !important;
+	padding: 0 !important;
 }
 
 .logout-button {
-    display: block;
-    width: inherit;
-    height: 100%;
-    margin: 0;
-    padding: .4rem;
+	display: block;
+	width: inherit;
+	height: 100%;
+	margin: 0;
+	padding: 0.4rem;
 }
 
 .user-options-list-link:hover {
-    color: $inactive-text-hover-colour;
+	color: $inactive-text-hover-colour;
 }
 
 .user-options:active ~ .user-options-list {
-    display: block;
-    visibility: visible;
+	display: block;
+	visibility: visible;
 }
 
 .user-options-list:hover {
-    display: block;
-    visibility: visible;
+	display: block;
+	visibility: visible;
 }
