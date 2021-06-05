@@ -10,6 +10,7 @@
     "start": "node index.js",
     "devstart": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "gulp build",
     "format:check": "prettier --check .",
     "format:write": "prettier --write ."
   },

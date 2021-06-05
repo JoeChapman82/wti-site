@@ -97,4 +97,4 @@ gulp.task(
 	gulp.parallel(watch, compileSass, minifyJs, serverTask, initBrowserSync)
 );
 
-// gulp.task('default', gulp.parallel(watch, compileSass, minifyJs, server, initBrowserSync));
+gulp.task('build', gulp.parallel(compileSass, minifyJs));

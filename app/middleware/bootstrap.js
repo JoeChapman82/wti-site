@@ -7,7 +7,9 @@ const roleAuthorisation = require('./authorisation/roleAuthorisation');
 
 module.exports = app => {
 	globals.helmet(app);
-	app.use(globals.httpsRedirect);
+	if (process.env.HTTPS !== 'false') {
+		app.use(globals.httpsRedirect);
+	}
 	globals.static(app);
 	globals.trustProxy(app);
 	globals.serveFavicon(app);

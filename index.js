@@ -3,6 +3,7 @@ const fs = require('fs');
 const createDummyData = require('./app/data/createDummyData');
 const path = require('path');
 const https = require('https');
+const http = require('http');
 const express = require('express');
 const initDb = require('./app/model/init');
 const createMasterData = require('./app/data/master/createMasterData');
@@ -24,7 +25,14 @@ initDb();
 createInitialUser();
 createMasterData();
 
-const server = https.createServer(options, app);
+let server;
+
+if (process.env.HTTPS === 'false') {
+	console.log('WARN: SINCE HTTPS IS SPECIFICALLY TURNED OFF, RUNNING ON HTTP');
+	server = http.createServer({}, app);
+} else {
+	server = https.createServer(options, app);
+}
 
 server.listen(PORT, () =>
 	console.log(`WTI Frontend listening on port ${PORT}`)
