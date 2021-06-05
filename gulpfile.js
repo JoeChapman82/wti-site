@@ -51,8 +51,12 @@ function nunjucks() {
 }
 
 function initBrowserSync() {
-	browserSync.init({
-		proxy: `https://localhost:${process.env.PORT}`,
+	let protocol = 'https';
+	if (process.env.HTTPS === 'false') {
+		protocol = 'http';
+	}
+	const bsConfig = {
+		proxy: `${protocol}://localhost:${process.env.PORT}`,
 		port: process.env.BSPORT || 4001,
 		reloadDelay: 1000,
 		ghostMode: {
@@ -60,12 +64,15 @@ function initBrowserSync() {
 			forms: false,
 			scroll: false,
 		},
-		https: {
+		open: false,
+	};
+	if (process.env.HTTPS !== 'false') {
+		bsConfig.https = {
 			key: gulpConfig.paths.key,
 			cert: gulpConfig.paths.cert,
-		},
-		open: false,
-	});
+		};
+	}
+	browserSync.init(bsConfig);
 }
 
 function serverTask() {
