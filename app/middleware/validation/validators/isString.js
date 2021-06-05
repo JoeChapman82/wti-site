@@ -1,3 +1,3 @@
-module.exports = (value) => {
-    return typeof value === 'string';
+module.exports = value => {
+	return typeof value === 'string';
 };

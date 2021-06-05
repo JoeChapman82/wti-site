@@ -6,117 +6,121 @@
 {% block pageTitle %}Dashboard{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="/css/chartist-min.css">
+	<link rel="stylesheet" href="/css/chartist-min.css">
 {% endblock %}
-
 
 {% block content %}
 
-    <div class="dashboard-cards-wrapper">
-        <div class="dashboard-card primary-card">
-            <a class="wti-card-link" href="/admin/existing-cases">
-                <div class="card-body">
-                    {{ dashboardResults.recordCount }}
-                </div>
-                <div class="card-footer">
+	<div class="dashboard-cards-wrapper">
+		<div class="dashboard-card primary-card">
+			<a class="wti-card-link" href="/admin/existing-cases">
+				<div class="card-body">
+					{{ dashboardResults.recordCount }}
+				</div>
+				<div class="card-footer">
                 Total cases
                 </div>
-            </a>
-        </div>
-        <div class="dashboard-card success-card">
-            <a class="wti-card-link" href="/admin/existing-cases-saved">
-                <div class="card-body">
-                {{ dashboardResults.animalsSaved }}
-                </div>
-                <div class="card-footer">
-                    <p>Total animals saved</p>
-                </div>
-            </a>
-        </div>
-        <div class="dashboard-card warning-card">
-            <a class="wti-card-link" href="/admin/existing-cases">
-                <div class="card-body">
-                {{ dashboardResults.uniqueSpecies.length }}
-                </div>
-                <div class="card-footer">
-                    <p>Species handled</p>
-                </div>
-            </a>
-        </div>
-        <div class="dashboard-card error-card">
-            <a class="wti-card-link" href="/admin/existing-cases">
-            <div class="card-body">
-            {{ dashboardResults.recordsThisMonth }}
-            </div>
-            <div class="card-footer">
-                <p>Cases this month</p>
-            </div>
-            </a>
-        </div>
-    </div>
+			</a>
+		</div>
+		<div class="dashboard-card success-card">
+			<a class="wti-card-link" href="/admin/existing-cases-saved">
+				<div class="card-body">
+					{{ dashboardResults.animalsSaved }}
+				</div>
+				<div class="card-footer">
+					<p>Total animals saved</p>
+				</div>
+			</a>
+		</div>
+		<div class="dashboard-card warning-card">
+			<a class="wti-card-link" href="/admin/existing-cases">
+				<div class="card-body">
+					{{ dashboardResults.uniqueSpecies.length }}
+				</div>
+				<div class="card-footer">
+					<p>Species handled</p>
+				</div>
+			</a>
+		</div>
+		<div class="dashboard-card error-card">
+			<a class="wti-card-link" href="/admin/existing-cases">
+				<div class="card-body">
+					{{ dashboardResults.recordsThisMonth }}
+				</div>
+				<div class="card-footer">
+					<p>Cases this month</p>
+				</div>
+			</a>
+		</div>
+	</div>
 
-    <div class="dashboard-charts-section">
-        <div class="dashboard-charts-row">
+	<div class="dashboard-charts-section">
+		<div class="dashboard-charts-row">
 
-            <div class="wti-card wti-card-50 wti-card-margin-right">
-                <div class="wti-card-header">
-                    Total Cases (By class)
-                </div>
-                <div class="wti-card-content dashboard-bar-chart" id="dashboardBarChart" data-x="" data-y=""></div>
-                <div class="wti-card-footer">
-                    Last update: {{ lastUpdated | asDayMonthYearTime }}
-                </div>
-            </div>
+			<div class="wti-card wti-card-50 wti-card-margin-right">
+				<div class="wti-card-header">
+						Total Cases (By class)
+				</div>
+				<div class="wti-card-content dashboard-chart" data-x="" data-y="">
+					<canvas id="totalCasesByClassChart"></canvas>
+				</div>
+				<div class="wti-card-footer">
+        	Last update: {{ lastUpdated | asDayMonthYearTime }}
+				</div>
+			</div>
 
-            <div class="wti-card wti-card-50">
-                <div class="wti-card-header">
-                    Total cases (By Zone)
-                </div>
-                <div class="wti-card-content dashboard-pie-chart" id="dashboardPieChart2" data-x="" data-y=""></div>
-                <div class="wti-card-footer">
-                    Last update: {{ lastUpdated | asDayMonthYearTime }}
-                </div>
-            </div>
+			<div class="wti-card wti-card-50">
+				<div class="wti-card-header">
+					Total cases (By Zone)
+				</div>
+				<div class="wti-card-content dashboard-chart" data-x="" data-y="">
+					<canvas id="totalCasesByZoneChart"></canvas>
+				</div>
+				<div class="wti-card-footer">
+        	Last update: {{ lastUpdated | asDayMonthYearTime }}
+				</div>
+			</div>
 
-        </div>
+		</div>
 
-        <div class="dashboard-charts-row">
+		<div class="dashboard-charts-row">
 
-            <div class="wti-card wti-card-100 wti-card-margin-right">
-                <div class="wti-card-header">
-                    New cases handled (past 12 months)
-                </div>
-                <div class="wti-card-content dashboard-charts-item dashboard-line-chart" id="dashboardLineChart" data-x="" data-y=""></div>
-                <div class="wti-card-footer">
-                    Last update: {{ lastUpdated | asDayMonthYearTime }}
-                </div>
-            </div>
+			<div class="wti-card wti-card-100 wti-card-margin-right">
+				<div class="wti-card-header">
+						New cases handled (past 12 months)
+				</div>
+				<div class="wti-card-content dashboard-chart" data-x="" data-y="">
+					<canvas id="newCasesHandled"></canvas>
+				</div>
+				<div class="wti-card-footer">
+					Last update: {{ lastUpdated | asDayMonthYearTime }}
+				</div>
+			</div>
 
-            {# <div class="wti-card wti-card-50 wti-smallscreen-margin-top">
-                <div class="wti-card-header">
-                    Total cases (By group name)
-                </div>
-                <div class="wti-card-content dashboard-pie-chart" id="dashboardPieChart" data-x="" data-y=""></div>
-                <div class="wti-card-footer">
-                    Last update: {{ lastUpdated | asDayMonthYearTime }}
-                </div>
-            </div> #}
+			<div id="dashboardData" class="wti-hidden">
+				{{ dashboardResultsJSON }}
+			</div>
 
-            <div id="dashboardData" class="wti-hidden">
-                {{ dashboardResultsJSON }}
-            </div>
-
-
-        </div>
-    </div>
-
-
-
+		</div>
+		<div class="dashboard-charts-row">
+			<div class="wti-card wti-card-100">
+				<div class="wti-card-header">
+					Total cases (By group name)
+				</div>
+				<div class="wti-card-content dashboard-chart" data-x="" data-y="">
+					<canvas id="totalCasesByGroupName"></canvas>
+				</div>
+				<div class="wti-card-footer">
+						Last update: {{ lastUpdated | asDayMonthYearTime }}
+				</div>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}
 
 {% block scripts %}
-    <script src="/scripts/chartist-min.js"></script>
-    <script src="/scripts/chartist-plugin-legend.js"></script>
-    <script src="/scripts/dashboard-charts.js"></script>
+	<script src="/scripts/palette.js"></script>
+	<script src="/scripts/chart.min.js"></script>
+	<script src="/scripts/dashboard-charts.js"></script>
 {% endblock %}

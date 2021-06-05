@@ -1,3 +1,3 @@
-module.exports = (value) => {
-    return typeof value !== 'undefined' && value !== null;
+module.exports = value => {
+	return typeof value !== 'undefined' && value !== null;
 };

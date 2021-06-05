@@ -1,3 +1,3 @@
-module.exports = (value) => {  
-    return !isNaN(value);  
+module.exports = value => {
+	return !isNaN(value);
 };

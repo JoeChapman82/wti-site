@@ -1,6 +1,6 @@
-const config = require ('../../config/main');
+const config = require('../../config/main');
 
 module.exports = (req, res, next) => {
-    res.clearCookie(config.session.cookieName);
-    next();
+	res.clearCookie(config.session.cookieName);
+	next();
 };

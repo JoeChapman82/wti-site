@@ -2,14 +2,12 @@ $primary-colour: rgba(52, 58, 64, 1);
 $secondary-colour: rgba(33, 37, 40, 1);
 $tertiary-colour: rgba(233, 236, 239, 1);
 
-
 $form-border-colour: rgba(216, 216, 216, 1);
 
 $white: rgba(255, 255, 255, 1);
-$transparant-white-1: rgba(255, 255, 255, .95);
+$transparant-white-1: rgba(255, 255, 255, 0.95);
 $black: rgba(0, 0, 0, 1);
-$transparant-black-1: rgba(0, 0, 0, .125);
-
+$transparant-black-1: rgba(0, 0, 0, 0.125);
 
 $success-colour: rgba(40, 166, 69, 1);
 $warning-colour: rgba(254, 193, 8, 1);
@@ -20,7 +18,7 @@ $error-colour-soft: rgba(255, 186, 186, 1);
 $button-colour-primary: rgba(0, 123, 255, 1);
 $button-colour-primary-hover: rgba(1, 105, 217, 1);
 
-$button-colour-dark: rgba(0, 0, 0, .5);
+$button-colour-dark: rgba(0, 0, 0, 0.5);
 $button-colour-dark-hover: rgba(0, 0, 0, 1);
 
 //links
@@ -28,9 +26,9 @@ $link-colour-primary: rgba(0, 86, 179, 1);
 
 // text
 $text-colour: rgba(255, 255, 255, 1);
-$text-colour-light: rgba(255, 255, 255, .9);
-$inactive-text-colour: rgba(255, 255, 255, .5);
-$inactive-text-hover-colour: rgba(255, 255, 255, .75);
+$text-colour-light: rgba(255, 255, 255, 0.9);
+$inactive-text-colour: rgba(255, 255, 255, 0.5);
+$inactive-text-hover-colour: rgba(255, 255, 255, 0.75);
 $inactive-text-bright-colour: rgba(255, 255, 255, 1);
 
 $dark-text-colour: #212529;

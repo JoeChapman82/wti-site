@@ -1,119 +1,164 @@
-(function() {
+(function () {
+	const dashboardData = JSON.parse(
+		document.getElementById('dashboardData').innerText
+	);
+	const monthCounts = dashboardData.monthCounts;
+	const classCounts = dashboardData.classCounts;
+	const groupCounts = dashboardData.groupCounts;
+	const zoneCounts = dashboardData.zoneCounts;
+	const newCasesLabels = Object.values(monthCounts).map(function (x) {
+		return x.date;
+	});
+	const newCasesValues = Object.values(monthCounts).map(function (x) {
+		return x.count;
+	});
+	const casesByClassLabels = Object.keys(classCounts);
+	const casesByClassValues = Object.values(classCounts);
+	const totalCasesByGroupLabels = Object.keys(groupCounts);
+	const totalCasesByGroupValues = Object.values(groupCounts);
+	const casesByZoneLabels = Object.keys(zoneCounts);
+	const casesByZoneValues = Object.values(zoneCounts);
 
-    var dashboardData = document.getElementById('dashboardData').innerText;
-    dashboardData = JSON.parse(dashboardData);
-    var monthCounts = dashboardData.monthCounts;
-    var classCounts = dashboardData.classCounts;
-    var groupCounts = dashboardData.groupCounts;
-    var zoneCounts = dashboardData.zoneCounts;
-    var lineLabels = Object.values(monthCounts).map(function(x) {
-        return x.date;
-    });
-    var lineValues = Object.values(monthCounts).map(function(x) {
-        return x.count;
-    });
-    var barLabels = Object.keys(classCounts);
-    var barValues = Object.values(classCounts);
-    var pieLabels = Object.keys(groupCounts);
-    var pieValues = Object.values(groupCounts);
-    console.log(pieValues, pieLabels);
-    var pie2Labels = Object.keys(zoneCounts);
-    var pie2Values = Object.values(zoneCounts);
+	function getSanitizedLabels(labels) {
+		return labels.map(l => (l.length > 20 ? `${l.substr(0, 20 - 1)}…` : l));
+	}
 
-    var data = {
-        labels: lineLabels.reverse(),
-        series: [
-            lineValues.reverse()
-        ]
-    };
+	function newCasesHandled(labels, values) {
+		const color = palette('tol-rainbow', 1).map(hex => `#${hex}`)[0];
+		const config = {
+			type: 'line',
+			data: {
+				labels: getSanitizedLabels(labels),
+				datasets: [
+					{
+						label: 'Last 12 months',
+						data: values,
+						fill: false,
+						borderColor: color,
+						backgroundColor: color,
+						tension: 0.1,
+					},
+				],
+			},
+			options: {
+				maintainAspectRatio: false,
+				plugins: {
+					legend: {
+						display: false,
+					},
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+						grid: {
+							display: true,
+						},
+					},
+					x: {
+						grid: {
+							display: false,
+						},
+					},
+				},
+			},
+		};
+		new Chart(document.querySelector('#newCasesHandled'), config);
+	}
+	newCasesHandled(newCasesLabels, newCasesValues);
 
-    var options = {
-        showArea: true,
-        classNames: {
-            area: 'wti-area'
-        },
-        axisY: {
-            onlyInteger: true
-        }
-    };
+	function totalCasesByClass(labels, values) {
+		const config = {
+			type: 'bar',
+			data: {
+				labels: getSanitizedLabels(labels),
+				datasets: [
+					{
+						label: 'Total Cases (by Class)',
+						data: values,
+						backgroundColor: palette('tol-rainbow', values.length).map(
+							hex => `#${hex}`
+						),
+						borderWidth: 0,
+					},
+				],
+			},
+			options: {
+				maintainAspectRatio: false,
+				plugins: {
+					legend: {
+						display: false,
+					},
+				},
+				scales: {
+					y: {
+						beginAtZero: true,
+						grid: {
+							display: false,
+						},
+					},
+					x: {
+						grid: {
+							display: false,
+						},
+					},
+				},
+			},
+		};
+		new Chart(document.querySelector('#totalCasesByClassChart'), config);
+	}
+	totalCasesByClass(casesByClassLabels, casesByClassValues);
 
-    var responsiveOptions = [
-        ['screen and (min-width: 641px) and (max-width: 1024px)', {
-            showPoint: false,
-            axisX: {
-                labelInterpolationFnc: function(value) {
-                    return value.slice(0, 3);
-                }
-            }
-        }],
-        ['screen and (max-width: 640px)', {
-            showLine: false,
-            axisX: {
-                labelInterpolationFnc: function(value) {
-                    return value[0];
-                }
-            }
-        }]
-    ];
+	function totalCasesByZone(labels, values) {
+		const config = {
+			type: 'pie',
+			data: {
+				labels: getSanitizedLabels(labels),
+				datasets: [
+					{
+						label: 'Total Cases (by Zone)',
+						data: values,
+						backgroundColor: palette('tol-rainbow', values.length).map(
+							hex => `#${hex}`
+						),
+						hoverOffset: 4,
+					},
+				],
+			},
+			options: {
+				maintainAspectRatio: false,
+			},
+		};
+		new Chart(document.querySelector('#totalCasesByZoneChart'), config);
+	}
+	totalCasesByZone(casesByZoneLabels, casesByZoneValues);
 
-    new Chartist.Line('#dashboardLineChart', data, options, responsiveOptions);
+	function totalCasesByGroupName(labels, values) {
+		const config = {
+			type: 'doughnut',
+			data: {
+				labels: getSanitizedLabels(labels),
+				datasets: [
+					{
+						label: 'Total Cases (by Group)',
+						data: values,
+						backgroundColor: palette('tol-rainbow', values.length).map(
+							hex => `#${hex}`
+						),
+						borderWidth: 0,
+					},
+				],
+			},
+			options: {
+				maintainAspectRatio: false,
+				plugins: {
+					legend: {
+						position: 'right',
+					},
+				},
+			},
+		};
 
-
-    new Chartist.Bar('#dashboardBarChart', {
-        labels: barLabels,
-        series: [
-            barValues
-        ]
-    }, {
-        classNames: {
-            bar: 'wti-bar'
-        },
-    });
-
-    // new Chartist.Pie('#dashboardPieChart', {
-    //     labels: pieLabels,
-    //     series: pieValues,
-    // }, {
-    //     labelInterpolationFnc: function(value, index) {
-    //         var percentage = Math.round(pieValues[index] / pieValues.reduce(function(a, b) {
-    //             return a + b;
-    //         }) * 100) + '%';
-    //         return percentage;
-    //     },
-    //     startAngle: 270,
-    //     labelOffset: 15,
-    //     showLabel: true,
-    //     plugins: [
-    //         Chartist.plugins.legend()
-    //     ]
-    // });
-
-    new Chartist.Pie('#dashboardPieChart2', {
-        labels: pie2Labels,
-        series: pie2Values
-    }, {
-        labelInterpolationFnc: function(value, index) {
-            var percentage = Math.round(pie2Values[index] / pie2Values.reduce(function(a, b) {
-                return a + b;
-            }) * 100) + '%';
-            return percentage;
-        },
-        startAngle: 270,
-        showLabel: true,
-        labelOffset: 15,
-        plugins: [
-            Chartist.plugins.legend()
-        ]
-    });
-
-    // setTimeout(function() {
-    //     document.querySelectorAll('#dashboardPieChart2 [class*="ct-series-"]').forEach(function(thing) {
-    //         console.log(thing);
-    //     });
-    // }, 1);
-
-
-
-
-
+		new Chart(document.querySelector('#totalCasesByGroupName'), config);
+	}
+	totalCasesByGroupName(totalCasesByGroupLabels, totalCasesByGroupValues);
 })();
