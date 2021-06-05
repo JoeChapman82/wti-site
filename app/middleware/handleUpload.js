@@ -8,8 +8,10 @@ const memoryStorage = multer.memoryStorage();
 
 // Checks for a csv file - if not, the file is rejected and is undefined at 'upload' execution time
 function fileFilterCsv(req, file, callback) {
-	console.log(file.mimetype);
-	if (file.mimetype !== 'text/csv') {
+	// under windows with old office suite, the mime type if application/vnd.ms-excel
+	// weird, but need to work around it
+	const acceptedMimeTypes = ['text/csv', 'application/vnd.ms-excel'];
+	if (!acceptedMimeTypes.includes(file.mimetype)) {
 		isIncorrectType = true;
 		callback(null, false);
 	} else {
