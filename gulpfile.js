@@ -53,7 +53,7 @@ function nunjucks() {
 function initBrowserSync() {
 	browserSync.init({
 		proxy: `https://localhost:${process.env.PORT}`,
-		port: 4001,
+		port: process.env.BSPORT || 4001,
 		reloadDelay: 1000,
 		ghostMode: {
 			clicks: false,
