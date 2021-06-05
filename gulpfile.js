@@ -6,6 +6,7 @@ const nodemon = require('gulp-nodemon');
 const uglify = require('gulp-uglify-es').default;
 const pump = require('pump');
 const path = require('path');
+const babel = require('gulp-babel');
 
 const gulpConfig = {
 	paths: {
@@ -42,6 +43,11 @@ function compileSass() {
 function minifyJs() {
 	return gulp
 		.src(gulpConfig.paths.js)
+		.pipe(
+			babel({
+				presets: ['@babel/preset-env'],
+			})
+		)
 		.pipe(uglify())
 		.pipe(gulp.dest(gulpConfig.paths.jsDest));
 }

@@ -37,12 +37,10 @@ $ct-series-colors: (
 	margin-bottom: 1rem;
 }
 
-.dashboard-pie-chart {
-	min-height: 300px;
-}
-
-.dashboard-bar-chart {
-	min-height: 300px;
+.dashboard-chart {
+	position: relative;
+	height: 350px;
+	overflow: visible;
 }
 
 .dashboard-line-chart {
