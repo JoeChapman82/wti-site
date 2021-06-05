@@ -24,7 +24,9 @@ module.exports = async (req, res, next) => {
 			// first get all data from CSV
 			Object.keys(data).forEach(originalKey => {
 				const key = originalKey.toLowerCase();
-				const value = data[originalKey].trim();
+				let value = data[originalKey].trim();
+				// fix ’ character like in Russell’s viper
+				value = value.split('’').join("'");
 				// add it to the record if it is present in our upload map
 				if (uploadMap[key] && uploadMap[key].skip !== true) {
 					const map = uploadMap[key];
