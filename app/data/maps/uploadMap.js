@@ -46,7 +46,7 @@ function parseDate(input) {
 const maps = {
 	'Case ID': {
 		linkedField: 'caseNumber',
-		method: false,
+		method: value => value.toLowerCase(),
 		skip: false,
 	},
 	Species: {
@@ -61,9 +61,7 @@ const maps = {
 	},
 	'Date of rescue/displacement': {
 		linkedField: 'dateOfRescue',
-		method: value => {
-			return { dateOfRescue: parseDate(value) };
-		},
+		method: value => parseDate(value),
 		skip: false,
 	},
 	'Place of rescue': {
@@ -103,9 +101,7 @@ const maps = {
 	},
 	'Date of admission/intervention': {
 		linkedField: 'dateOfAdmission',
-		method: value => {
-			return { dateOfAdmission: parseDate(value) };
-		},
+		method: value => parseDate(value),
 		skip: false,
 	},
 	Stage: {
@@ -165,9 +161,7 @@ const maps = {
 	},
 	'Date of outcome': {
 		linkedField: 'dateOfOutcome',
-		method: value => {
-			return { dateOfOutcome: parseDate(value) };
-		},
+		method: value => parseDate(value),
 		skip: false,
 	},
 	'Place of outcome': {
@@ -188,8 +182,14 @@ const maps = {
 	Remarks: {
 		linkedField: 'remarks',
 		method: false,
-		skip: true,
+		skip: false,
 	},
 };
 
-module.exports = maps;
+// lowercase the keys of the map for better acceptance rate
+const normalizedMap = {};
+Object.keys(maps).forEach(key => {
+	normalizedMap[key.toLowerCase()] = maps[key];
+});
+
+module.exports = normalizedMap;
