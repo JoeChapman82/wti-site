@@ -30,10 +30,12 @@ function parseDate(input) {
     if (!Number.isFinite(year)) {
         year = new Date().getFullYear();
     } else {
-        if (year > 95) {
-            year = year + 1900;
-        } else {
-            year = 2000 + year;
+        if (year < 1000) {
+            if (year > 95) {
+                year = year + 1900;
+            } else {
+                year = 2000 + year;
+            }
         }
     }
     const date = new Date();
@@ -41,7 +43,7 @@ function parseDate(input) {
     return date;
 }
 
-module.exports = {
+const maps = {
     'Case ID': {
         linkedField: "caseNumber",
         method: false,
@@ -183,3 +185,5 @@ module.exports = {
         skip: true
     }
 }
+
+module.exports = maps;
