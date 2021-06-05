@@ -27,6 +27,8 @@ module.exports = async (req, res, next) => {
 				let value = data[originalKey].trim();
 				// fix ’ character like in Russell’s viper
 				value = value.split('’').join("'");
+				// fix ‐ character like Yellow‐throated
+				value = value.split('‐').join('-');
 				// add it to the record if it is present in our upload map
 				if (uploadMap[key] && uploadMap[key].skip !== true) {
 					const map = uploadMap[key];
