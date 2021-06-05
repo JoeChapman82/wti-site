@@ -38,15 +38,15 @@ $ct-series-colors: (
 }
 
 .dashboard-pie-chart {
-	height: 200px;
+	min-height: 300px;
 }
 
 .dashboard-bar-chart {
-	height: 200px;
+	min-height: 300px;
 }
 
 .dashboard-line-chart {
-	height: 200px;
+	min-height: 200px;
 }
 
 .wti-bar {

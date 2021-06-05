@@ -91,4 +91,8 @@
 		flex: 0 0 100%;
 		width: 100%;
 	}
+	.sidebar-nav-link {
+		border-bottom: 0 none;
+		border-left: 3px solid $secondary-colour;
+	}
 }

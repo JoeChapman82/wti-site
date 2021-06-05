@@ -61,6 +61,8 @@
 
 	new Chartist.Line('#dashboardLineChart', data, options, responsiveOptions);
 
+	console.log(barLabels, barValues);
+
 	new Chartist.Bar(
 		'#dashboardBarChart',
 		{
