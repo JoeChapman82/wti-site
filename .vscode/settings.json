@@ -1,12 +1,14 @@
 {
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"[javascript]": {
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnSave": true
 	},
 	"[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnSave": true
 	},
 	"[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.wordWrap": "on",
 		"editor.quickSuggestions": false,
 		"editor.formatOnSave": true
