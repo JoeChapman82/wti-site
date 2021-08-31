@@ -35,6 +35,7 @@
         
                                 {{ forms.selectInput('groupName', 'Group name', [], record.groupName, errors.groupName) }}
                                 {{ forms.selectInput('identityName', 'Identity', [], record.identityName, errors.identityName)}}
+                                {{ forms.textInput('categoryName', 'Category name', record.categoryName, errors.categoryName, false, false, true) }}
                                 {{ forms.textInput('scientificName', 'Scientific name', record.scientificName, errors.scientificName, false, false, true) }}
                                 {{ forms.textInput('iucnCategory', 'IUCN Category', record.iucnCategory, errors.iucnCategory, false, false, true) }}
         

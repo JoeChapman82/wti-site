@@ -87,7 +87,7 @@
         <div class="wti-case-flex-item wti-case-flex-item-margined">
             {{ forms.selectInput('rescueMode', 'Rescue mode', [
                 {text: 'In situ', value: 'In situ', target: 'facilityInSituWrapper'},
-                {text: 'Ex situ', value: 'Ex Situ', target: 'facilityExSituWrapper'}
+                {text: 'Ex situ', value: 'Ex situ', target: 'facilityExSituWrapper'}
             ], record.rescueMode, errors.rescueMode)}}
         </div>
 
@@ -148,7 +148,11 @@
         </div>
     </div> -->
 
+    {% if userToken.permissions !== 'Viewer' %}
     <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+    <button class="wti-button wti-warning-button" type="submit" name="button" value="delete">Delete Case</button>
+
+    {% endif %}
 </div>
 
 

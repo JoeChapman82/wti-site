@@ -16,6 +16,15 @@
 	background-color: $button-colour-primary-hover;
 }
 
+.wti-warning-button {
+	background-color: darken($color: red, $amount: 5%);
+	color: $white;
+}
+
+.wti-warning-button:hover {
+	background-color: darken($color: red, $amount: 10%);
+}
+
 .wti-button {
 	display: inline-block;
 	font-weight: 400;

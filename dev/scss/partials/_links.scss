@@ -49,6 +49,10 @@
 	justify-content: center;
 }
 
+.administration-link-wrapper.single-link {
+	width: 30%;
+}
+
 .administration-link {
 	background-color: $tertiary-colour;
 	border: 2px solid $button-colour-dark;

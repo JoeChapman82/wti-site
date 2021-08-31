@@ -14,6 +14,7 @@
                 <h2 class="wti-success-message">User Created!</h2>
                 <p class="wti-success-details">Email address: <span class="strong">{{ createdUser.email }}</span></p>
                 <p class="wti-success-details">Name: <span class="strong">{{ createdUser.username }}</span></p>
+                <p class="wti-success-details">Role: <span class="strong">{{ createdUser.role }}</span></p>
                 <p class="wti-success-details">Password: <span class="strong">{{ defaultPassword }}</span></p>
             </div>
             {% endif %}
@@ -24,6 +25,11 @@
                 </div>
                 {{ forms.textInput('email', 'Email address', '', errors.email) }}
                 {{ forms.textInput('username', 'Name', '', errors.username) }}
+                {{ forms.selectInput('role', 'Role', [
+                    {text: 'Admin', value: 'Admin'},
+                    {text: 'Editor', value: 'Editor'},
+                    {text: 'Viewer', value: 'Viewer'}
+                ], '', errors.role)}} 
                 {{ forms.hiddenInput('_csrf', _csrf )}}
                 {{ forms.hiddenInput('password', defaultPassword )}}
                 {{ forms.submitButton('submit', 'primary', 'Create user') }}

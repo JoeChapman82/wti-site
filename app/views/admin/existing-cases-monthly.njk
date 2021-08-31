@@ -4,11 +4,11 @@
 {% import "nunjucks/macros/navigation.njk" as navigation %}
 {% import "nunjucks/macros/icons.njk" as icons %}
 
-{% block pageTitle %}Existing cases{% endblock %}
+{% block pageTitle %}Existing cases saved{% endblock %}
 
 {% block content %}
     <div class="wti-main-content-wrapper">
-        <form action="/admin/existing-cases" method="post">
+        <form action="/admin/existing-cases-saved" method="post">
             {{ forms.hiddenInput('_csrf', _csrf )}}
             {% for key, value in queryParams %}
                 <input type="hidden" name="{{ key }}" value="{{ value }}">
@@ -19,7 +19,7 @@
                 {% else %}
                      <span class="wti-chevron-left">{{ icons.leftChevron('left-chevron-icon-disabled') }}</span>
                      {% endif %}
-            Showing {{ startPoint }} to {{ endPoint }} of {{ recordCount }} records
+            Showing {{ startPoint }} to {{ endPoint }} of {{ recordCountMonthly }} records
                 {% if showForward %}
                     <!-- <span class="wti-chevron-right"><a class="link" href="/admin/search?start={{ endPoint + 1 }}">{{ icons.rightChevron('right-chevron-icon') }}</a></span> -->
                     <input class="wti-right-chevron-input" name="start" type="submit" value="{{ endPoint + 1 }}">
@@ -28,11 +28,11 @@
                     {% endif %}
             </p>
             </p>
-            {% set cardHeading = 'Existing records' %}
+            {% set cardHeading = 'Cases admitted this month' %}
             {% include "nunjucks/partials/recordsResults.njk" %}
             <div class="wti-button-wrapper">
                 <input id="findRecords" type="submit" name="findRecords" class="wti-button wti-primary-button" value="Find records">
-                {% if hasAtLeastOneSubmit %}
+                {% if hasAtLeastOneSubmit %} {
                     <input type="hidden" name="hasAtLeastOneSubmit" value="hasAtLeastOneSubmit">
                 {% endif %}
             </div>

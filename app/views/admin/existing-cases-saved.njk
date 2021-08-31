@@ -14,9 +14,6 @@
                 <input type="hidden" name="{{ key }}" value="{{ value }}">
             {% endfor %}
             <p class="wti-cases-details">
-                {{ percentageSaved }}% of total cases have been released
-            </p>
-            <p class="wti-cases-details">
                 {% if showBack %}
                     <input class="wti-left-chevron-input" name="start" type="submit" value="{{ startPoint - recordRetrievalLimit }}">
                 {% else %}

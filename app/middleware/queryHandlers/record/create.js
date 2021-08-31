@@ -3,10 +3,12 @@ const redirects = require('../../../controllers/redirects');
 const uuidV4 = require('uuid/v4');
 
 module.exports = (req, res, next) => {
+	console.log(req.body);
 	let record = {
 		caseNumber: uuidV4(),
 		placeOfRescue: req.body.placeOfRescue,
 		groupName: req.body.groupName,
+		categoryName: req.body.categoryName,
 		identityName: req.body.identityName,
 		class: req.body.class,
 		zoneName: req.body.zoneName,
@@ -15,6 +17,7 @@ module.exports = (req, res, next) => {
 		lastUpdatedAt: new Date(),
 		dateAdded: new Date(),
 	};
+	console.log(record);
 	create(record)
 		.then(response => {
 			res.locals.record = response;

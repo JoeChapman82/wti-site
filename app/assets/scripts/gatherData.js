@@ -1,1 +1,79 @@
-"use strict";function asyncGeneratorStep(e,t,n,r,a,o,c){try{var u=e[o](c),i=u.value}catch(e){return void n(e)}u.done?t(i):Promise.resolve(i).then(r,a)}function _asyncToGenerator(e){return function(){var t=this,n=arguments;return new Promise((function(r,a){var o=e.apply(t,n);function c(e){asyncGeneratorStep(o,r,a,c,u,"next",e)}function u(e){asyncGeneratorStep(o,r,a,c,u,"throw",e)}c(void 0)}))}}_asyncToGenerator(regeneratorRuntime.mark((function e(){var t,n,r,a,o,c,u,s;return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:s=function(){return(s=_asyncToGenerator(regeneratorRuntime.mark((function e(t){var r,a,o;return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return r=t.target.name,a=t.target.options[t.target.selectedIndex].value,e.prev=2,e.next=5,n("/admin/get-animal-data-value",r,a);case 5:o=e.sent,document.getElementById("iucnCategory")&&(document.getElementById("iucnCategory").value=o.iucnCategory,document.getElementById("scientificName").value=o.scientificName),e.next=12;break;case 9:e.prev=9,e.t0=e.catch(2),console.log(e.t0);case 12:case"end":return e.stop()}}),e,null,[[2,9]])})))).apply(this,arguments)},u=function(e){return s.apply(this,arguments)},c=function(){return(c=_asyncToGenerator(regeneratorRuntime.mark((function e(r){var a,o,c,u;return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return a=r.target.name,o=r.target.options[r.target.selectedIndex].value,e.prev=2,e.next=5,n("/admin/get-unique-values",a,o);case 5:for(c=e.sent,u=document.getElementById(t[a]),i=u.options.length-1;i>=1;i--)u.remove(i);c.forEach((function(e,t){var n=document.createElement("option");n.text=e,u.add(n,u[t+1])})),e.next=14;break;case 11:e.prev=11,e.t0=e.catch(2),console.log(e.t0);case 14:case"end":return e.stop()}}),e,null,[[2,11]])})))).apply(this,arguments)},o=function(e){return c.apply(this,arguments)},a=function(e,t){return{_csrf:document.getElementById("_csrf").value,key:e,value:t}},r=function(){return(r=_asyncToGenerator(regeneratorRuntime.mark((function e(t,n,r){var o;return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,fetch(t,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(a(n,r))});case 2:return o=e.sent,e.prev=3,e.next=6,o.json();case 6:return e.abrupt("return",e.sent);case 9:e.prev=9,e.t0=e.catch(3),console.log(e.t0);case 12:case"end":return e.stop()}}),e,null,[[3,9]])})))).apply(this,arguments)},n=function(e,t,n){return r.apply(this,arguments)},t={class:"groupName",groupName:"identityName"},document.querySelectorAll("#class, #groupName").forEach((function(e){e.addEventListener("change",o)})),document.querySelectorAll("#identityName").forEach((function(e){e.addEventListener("change",u)}));case 10:case"end":return e.stop()}}),e)})))();
+(async () => {
+    const linkedFields = {
+        class: 'groupName',
+        groupName: 'identityName'
+    };
+
+    async function postData(url, queryKey, queryValue) {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData(queryKey, queryValue))
+        });
+        try {
+            return await response.json();
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    function formData(queryKey, queryValue) {
+        return {
+            _csrf: document.getElementById('_csrf').value,
+            key: queryKey,
+            value: queryValue
+        };
+    }
+
+    async function updateDependentInputs(e) {
+        let queryKey = e.target.name;
+        let queryValue = e.target.options[e.target.selectedIndex].value;
+        try {
+            let response = await postData(
+                '/admin/get-unique-values',
+                queryKey,
+                queryValue
+            );
+            let x = document.getElementById(linkedFields[queryKey]);
+            for (i = x.options.length - 1; i >= 1; i--) {
+                x.remove(i);
+            }
+            response.forEach((item, index) => {
+                var option = document.createElement('option');
+                option.text = item;
+                x.add(option, x[index + 1]);
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function getAnimalDataValue(e) {
+        let queryKey = e.target.name;
+        let queryValue = e.target.options[e.target.selectedIndex].value;
+        try {
+            let response = await postData(
+                '/admin/get-animal-data-value',
+                queryKey,
+                queryValue
+            );
+            if (document.getElementById('iucnCategory')) {
+                document.getElementById('iucnCategory').value = response.iucnCategory;
+				document.getElementById('scientificName').value = response.scientificName;
+				document.getElementById('categoryName').value = response.categoryName;
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    document.querySelectorAll('#class, #groupName').forEach(el => {
+        el.addEventListener('change', updateDependentInputs);
+    });
+
+    document.querySelectorAll('#identityName').forEach(el => {
+        el.addEventListener('change', getAnimalDataValue);
+    });
+})();

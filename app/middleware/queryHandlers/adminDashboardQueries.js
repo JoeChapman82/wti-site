@@ -3,38 +3,41 @@ const redirects = require('../../controllers/redirects');
 const { dashboardDataRunner } = require('../../helpers/dashboardDataRunner');
 
 module.exports = async (req, res, next) => {
-	const keys = [
-		'recordCount',
-		'animalsSaved',
-		'uniqueSpecies',
-		'recordsThisMonth',
-	];
-	const dashboardResults = {};
-	const now = new Date();
-	const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1, 0, 0);
-	const thisMonthQuery = { dateAdded: { $gte: startOfMonth, $lte: now } };
-	const calls = [
-		findRecords.count({}),
-		findRecords.count({ finalDisposition: 'Released' }),
-		findRecords.distinct('identityName'),
-		findRecords.count(thisMonthQuery),
-	];
-	try {
-		const responses = await Promise.all(calls);
-		responses.forEach((response, index) => {
-			dashboardResults[keys[index]] = response;
-		});
-		const dashboardData = dashboardDataRunner();
-		res.locals.dashboardResults = { ...dashboardData, ...dashboardResults };
-		res.locals.lastUpdated = dashboardData.lastUpdated;
-		res.locals.dashboardResultsJSON = JSON.stringify(
-			res.locals.dashboardResults
-		);
-		return next();
-	} catch (error) {
-		console.log(error);
-		return redirects.goneWrong(req, res);
-	}
+    const keys = [
+        'recordCount',
+        'animalsSaved',
+        'uniqueSpecies',
+        'recordsThisMonth',
+        'deadOnArrival'
+    ];
+    const dashboardResults = {};
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1, 0, 0);
+    const thisMonthQuery = { dateOfAdmission: { $gte: startOfMonth, $lte: now } };
+    const calls = [
+        findRecords.count({}),
+        findRecords.count({ finalDisposition: 'Released' }),
+        findRecords.distinct('identityName'),
+        findRecords.count(thisMonthQuery),
+        findRecords.count({ finalDisposition: 'Dead on arrival' })
+    ];
+    try {
+        const responses = await Promise.all(calls);
+        responses.forEach((response, index) => {
+            dashboardResults[keys[index]] = response;
+        });
+        dashboardResults.animalsSaved = ((dashboardResults.animalsSaved / (dashboardResults.recordCount - dashboardResults.deadOnArrival)) * 100).toFixed(2) + '%';
+        const dashboardData = dashboardDataRunner();
+        res.locals.dashboardResults = { ...dashboardData, ...dashboardResults };
+        res.locals.lastUpdated = dashboardData.lastUpdated;
+        res.locals.dashboardResultsJSON = JSON.stringify(
+            res.locals.dashboardResults
+        );
+        return next();
+    } catch (error) {
+        console.log(error);
+        return redirects.goneWrong(req, res);
+    }
 };
 
 // module.exports = async (req, res, next) => {

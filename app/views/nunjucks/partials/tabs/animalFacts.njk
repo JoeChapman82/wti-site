@@ -28,7 +28,7 @@
     <div class="wti-case-flex-wrapper">
         <div class="wti-case-flex-item wti-case-flex-item-margined">
             {{ forms.selectInput('stage', 'Stage', [
-                {text: 'Infant', value: 'Infant'},
+                {text: 'Juvenile', value: 'Juvenile'},
                 {text: 'Neonate', value: 'Neonate'},
                 {text: 'Subadult', value: 'Subadult'},
                 {text: 'Adult', value: 'Adult'}
@@ -40,7 +40,8 @@
                 {text: 'Female', value: 'F'},
                 {text: 'Unknown', value: 'UK'},
                 {text: 'Unsexed', value: 'US'}
-            ], record.sex, errors.sex)}}        </div>
+            ], record.sex, errors.sex)}}        
+        </div>
     </div>
     <div class="wti-case-flex-wrapper">
         <div class="wti-case-flex-item wti-case-flex-item-margined">
@@ -67,5 +68,10 @@
         </div>
     </div>
 
+    {% if userToken.permissions !== 'Viewer' %}
     <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+    <button class="wti-button wti-warning-button" type="submit" name="button" value="delete">Delete Case</button>
+
+    {% endif %}
+
 </div>

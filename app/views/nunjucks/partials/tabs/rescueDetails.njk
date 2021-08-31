@@ -33,6 +33,13 @@
         <div class="wti-case-flex-item wti-case-flex-item-margined">
             {{ forms.textInput('identityName', 'Identity name', record.identityName, errors.identityName) }}
         </div>
+        <div class="wti-case-flex-item">
+            {{ forms.textInput('categoryName', 'Category name', record.categoryName, errors.categoryName) }}
+        </div>
     </div>
-    <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+
+    {% if userToken.permissions !== 'Viewer' %}
+        <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+        <button class="wti-button wti-warning-button" type="submit" name="button" value="delete">Delete Case</button>
+        {% endif %}
 </div>

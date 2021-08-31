@@ -61,6 +61,7 @@ async function gatherData() {
 		dashboardResults.lastUpdated = now;
 		dashboardData = dashboardResults;
 		console.log('Dashboard data gather complete', new Date());
+		console.log(dashboardResults);
 	} catch (error) {
 		console.log('Error in dashboard data gatherer');
 		console.log(error);

@@ -14,8 +14,8 @@ const PORT = process.env.PORT;
 const app = express();
 
 const options = {
-	key: fs.readFileSync(path.join(__dirname, process.env.KEY_FILE_PATH)),
-	cert: fs.readFileSync(path.join(__dirname, process.env.CERT_FILE_PATH)),
+    key: fs.readFileSync(path.join(__dirname, process.env.KEY_FILE_PATH)),
+    cert: fs.readFileSync(path.join(__dirname, process.env.CERT_FILE_PATH))
 };
 
 AWS.config.update({ region: process.env.AWS_REGION });
@@ -28,16 +28,16 @@ createMasterData();
 let server;
 
 if (process.env.HTTPS === 'false') {
-	console.log('WARN: SINCE HTTPS IS SPECIFICALLY TURNED OFF, RUNNING ON HTTP');
-	server = http.createServer({}, app);
+    console.log('WARN: SINCE HTTPS IS SPECIFICALLY TURNED OFF, RUNNING ON HTTP');
+    server = http.createServer({}, app);
 } else {
-	server = https.createServer(options, app);
+    server = https.createServer(options, app);
 }
 
 server.listen(PORT, () =>
-	console.log(`WTI Frontend listening on port ${PORT}`)
+    console.log(`WTI Frontend listening on port ${PORT}`)
 );
 
 if (process.env.CREATE_DUMMY_DATA === 'true') {
-	createDummyData();
+    createDummyData();
 }

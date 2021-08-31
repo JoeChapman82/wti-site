@@ -21,7 +21,7 @@
         <div class="wti-case-flex-item wti-case-flex-item-margined">
             {{ forms.selectInput('finalDisposition', 'Final disposition', [
                 {text: 'Dead on arrival', value: 'Dead on arrival'},
-                {text: 'Died under care', value: 'Died in captivity', target: 'diedUnderCareDetails'},
+                {text: 'Died under care', value: 'Died under care', target: 'diedUnderCareDetails'},
                 {text: 'Released', value: 'Released', target: 'releasedDetails'},
                 {text: 'Transferred', value: 'Transferred', target: 'transferredDetails'},
                 {text: 'Escaped', value: 'Escaped', target: 'escapedDetails'},
@@ -140,7 +140,10 @@
 
 
 
+    {% if userToken.permissions !== 'Viewer' %}
     <button class="wti-button wti-primary-button" type="submit" name="button" data-tab="rescueDetails">Update Case</button>
+    <button class="wti-button wti-warning-button" type="submit" name="button" value="delete">Delete Case</button>
+    {% endif %}
 
 
 </div>

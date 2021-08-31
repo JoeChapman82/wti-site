@@ -1,7 +1,7 @@
 module.exports = [
-	'Dead on arrival',
-	'Died under care',
-	'Released',
-	'Transferred',
-	'Escaped',
+    'Dead on arrival',
+    'Died in captivity',
+    'Released',
+    'Transferred',
+    'Escaped'
 ];
